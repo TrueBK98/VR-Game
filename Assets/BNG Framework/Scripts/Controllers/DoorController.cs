@@ -12,22 +12,6 @@ public class DoorController : MonoBehaviour
         DoorAnim = GetComponent<Animator>();
     }
 
-    public void CloseDoor()
-    {
-        if (name.Contains("1"))
-        {
-            DoorAnim.Play("door_1_close");
-        }
-        else if (name.Contains("2"))
-        {
-            DoorAnim.Play("door_2_close");
-        }
-        else if (name.Contains("3"))
-        {
-            DoorAnim.Play("door_3_close");
-        }
-    }
-
     public void DoorClosed()
     {
         if (name.Contains("1"))
@@ -41,22 +25,6 @@ public class DoorController : MonoBehaviour
         else if (name.Contains("3"))
         {
             DoorAnim.Play("door_3_closed");
-        }
-    }
-
-    public void OpenDoor()
-    {
-        if (name.Contains("1"))
-        {
-            DoorAnim.Play("door_1_open");
-        }
-        else if (name.Contains("2"))
-        {
-            DoorAnim.Play("door_2_open");
-        }
-        else if (name.Contains("3"))
-        {
-            DoorAnim.Play("door_3_open");
         }
     }
 

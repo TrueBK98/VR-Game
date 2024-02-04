@@ -13,7 +13,7 @@ namespace BNG {
     public class Damageable : MonoBehaviour {
 
         public float Health = 100;
-        private float _startingHealth;
+        protected float _startingHealth;
 
         [Tooltip("If specified, this GameObject will be instantiated at this transform's position on death.")]
         public GameObject SpawnOnDeath;
@@ -77,7 +77,7 @@ namespace BNG {
         public bool SendDamageToInvector = true;
 #endif
 
-        bool destroyed = false;
+        protected bool destroyed = false;
 
         Rigidbody rigid;
         bool initialWasKinematic;

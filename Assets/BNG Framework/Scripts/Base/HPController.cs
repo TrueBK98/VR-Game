@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using BNG;
+
 public class HPController : Damageable
 {
     public GameObject HealthBar;
@@ -57,11 +58,8 @@ public class HPController : Damageable
         if (Health <= 0)
         {
             DestroyThis();
-            onDie();
         }
     }
-
-    public Action onDie;
 
     protected void DisplayValue()
     {

@@ -24,6 +24,24 @@ namespace BNG {
         public void ToggleActive(InputAction.CallbackContext context) {
             if(ToggleObject) {
                 ToggleObject.SetActive(!ToggleObject.activeSelf);
+                if (ToggleObject.activeSelf)
+                {
+                    Time.timeScale = 0;
+                    if (WeaponInven.Instance.currentWeapon != WeaponType.BareHand)
+                    {
+                        WeaponInven.Instance.activeWeapon.GetComponent<Grabbable>().DropItem(WeaponInven.Instance.grabber);
+                        WeaponInven.Instance.activeWeapon.SetActive(false);
+                    }
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                    if (WeaponInven.Instance.currentWeapon != WeaponType.BareHand)
+                    {
+                        WeaponInven.Instance.activeWeapon.SetActive(true);
+                        WeaponInven.Instance.grabber.GrabGrabbable(WeaponInven.Instance.activeWeapon.GetComponent<Grabbable>());
+                    }
+                }
             }
         }
     }

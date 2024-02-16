@@ -11,7 +11,8 @@ namespace BNG {
     /// A trigger collider that handles grabbing grabbables.
     /// </summary>
     [RequireComponent(typeof(GrabbablesInTrigger))]
-    public class Grabber : MonoBehaviour {
+    public class Grabber : MonoBehaviour
+    {
 
         [Header("Hand Side")]
         /// <summary>
@@ -113,7 +114,8 @@ namespace BNG {
         /// <summary>
         /// Are we currently pulling a remote grabbable towards us?
         /// </summary>
-        public bool RemoteGrabbingItem {
+        public bool RemoteGrabbingItem
+        {
             get { return flyingGrabbable != null; }
         }
 
@@ -121,8 +123,10 @@ namespace BNG {
         /// Keep track of all grabbables in trigger
         /// </summary>
         GrabbablesInTrigger grabsInTrigger;
-        public GrabbablesInTrigger GrabsInTrigger {
-            get {
+        public GrabbablesInTrigger GrabsInTrigger
+        {
+            get
+            {
                 return grabsInTrigger;
             }
         }
@@ -130,19 +134,21 @@ namespace BNG {
         /// <summary>
         /// Returns the Grabbable object if we are currenly remote grabbing an object
         /// </summary>
-        public Grabbable RemoteGrabbingGrabbable {
-            get {
+        public Grabbable RemoteGrabbingGrabbable
+        {
+            get
+            {
                 return flyingGrabbable;
             }
         }
         Grabbable flyingGrabbable;
 
         // How long the object has been flying at our hand
-        float flyingTime = 0;        
+        float flyingTime = 0;
 
         // Offset Hand Models are from Grabber
         public Vector3 handsGraphicsGrabberOffset { get; private set; }
-        public Vector3 handsGraphicsGrabberOffsetRotation { get; private set; }                
+        public Vector3 handsGraphicsGrabberOffsetRotation { get; private set; }
 
         [HideInInspector]
         public Vector3 PreviousPosition;
@@ -151,7 +157,7 @@ namespace BNG {
         /// Can be used to position hands independently from model
         /// </summary>
         [HideInInspector]
-        public Transform DummyTransform; 
+        public Transform DummyTransform;
 
         Rigidbody rb;
         InputBridge input;
@@ -175,14 +181,20 @@ namespace BNG {
         [HideInInspector]
         public VelocityTracker velocityTracker;
 
-        void Start() {
+        public GameObject pistolClip;
+        public GameObject rifleClip;
+        public GameObject shotgunShell;
+
+        void Start()
+        {
             rb = GetComponent<Rigidbody>();
             grabsInTrigger = GetComponent<GrabbablesInTrigger>();
             joint = GetComponent<ConfigurableJoint>();
             input = InputBridge.Instance;
 
             // Setup defaults
-            if (joint == null) {
+            if (joint == null)
+            {
                 joint = gameObject.AddComponent<ConfigurableJoint>();
                 joint.rotationDriveMode = RotationDriveMode.Slerp;
 
@@ -197,7 +209,8 @@ namespace BNG {
                 zDrive.positionSpring = 2500;
             }
 
-            if(HandsGraphics) {
+            if (HandsGraphics)
+            {
                 handsGraphicsParent = HandsGraphics.transform.parent;
                 handsGraphicsPosition = HandsGraphics.transform.localPosition;
                 handsGraphicsRotation = HandsGraphics.transform.localRotation;
@@ -207,89 +220,108 @@ namespace BNG {
             }
 
             // Make Collision Dynamic so we don't miss any collisions
-            if (rb && rb.isKinematic) {
+            if (rb && rb.isKinematic)
+            {
                 rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             }
 
             // Should we auto equip an item
-            if(EquipGrabbableOnStart != null) {
+            if (EquipGrabbableOnStart != null)
+            {
                 GrabGrabbable(EquipGrabbableOnStart);
             }
 
             // Velocity Tracking
-            if(velocityTracker == null) {
+            if (velocityTracker == null)
+            {
                 velocityTracker = GetComponent<VelocityTracker>();
             }
 
             // Add Velocity Tracker if one was not provided
-            if (velocityTracker == null) {
+            if (velocityTracker == null)
+            {
                 velocityTracker = gameObject.AddComponent<VelocityTracker>();
                 velocityTracker.controllerHand = HandSide;
             }
         }
-        
-        void Update() {
+
+        void Update()
+        {
 
             // Keep track of how long an object has been trying to fly to our hand
-            if(flyingGrabbable != null) {
+            if (flyingGrabbable != null)
+            {
                 flyingTime += Time.deltaTime;
-                
+
                 // Only allow an object to fly towards us
                 float maxFlyingGrabbableTime = 5;
-                if(flyingTime > maxFlyingGrabbableTime) {
+                if (flyingTime > maxFlyingGrabbableTime)
+                {
                     resetFlyingGrabbable();
                 }
-            }           
+            }
 
             // Make sure grab is valid
-            updateFreshGrabStatus();            
+            updateFreshGrabStatus();
 
             // Fire off updates
             checkGrabbableEvents();
 
             // Check for input to grab or release item
-            if ((HoldingItem == false && InputCheckGrab()) || ForceGrab) {
-                TryGrab();               
+            if ((HoldingItem == false && InputCheckGrab()) || ForceGrab)
+            {
+                TryGrab();
             }
-            else if(((HoldingItem || RemoteGrabbingItem) && inputCheckRelease()) || ForceRelease) {                
+            else if (((HoldingItem || RemoteGrabbingItem) && inputCheckRelease()) || ForceRelease)
+            {
                 TryRelease();
             }
         }
 
-        protected virtual void updateFreshGrabStatus() {
+        protected virtual void updateFreshGrabStatus()
+        {
             // Update Fresh Grab status
-            if (getGrabInput(GrabButton.Grip) <= ReleaseGripAmount) {
+            if (getGrabInput(GrabButton.Grip) <= ReleaseGripAmount)
+            {
                 // We release grab, so this is considered fresh
                 FreshGrip = true;
                 currentGrabTime = 0;
             }
 
             // Increment fresh grab time
-            if (getGrabInput(GrabButton.Grip) > GripAmount) {
+            if (getGrabInput(GrabButton.Grip) > GripAmount)
+            {
                 currentGrabTime += Time.deltaTime;
             }
 
             // Not considered a valid grab if holding down for too long
-            if (currentGrabTime > GrabCheckSeconds) {
+            if (currentGrabTime > GrabCheckSeconds)
+            {
                 FreshGrip = false;
             }
         }
 
-        void checkGrabbableEvents() {
+        void checkGrabbableEvents()
+        {
 
             // Bail if nothing in our trigger area
-            if(grabsInTrigger == null) {
+            if (grabsInTrigger == null)
+            {
                 return;
             }
 
             // If last closest was this one let event know and remove validator  
-            if (previousClosest != grabsInTrigger.ClosestGrabbable) {
-                if (previousClosest != null) {
+            if (previousClosest != grabsInTrigger.ClosestGrabbable)
+            {
+                if (previousClosest != null)
+                {
 
                     // Fire Off Events
                     GrabbableEvents[] ge = previousClosest.GetComponents<GrabbableEvents>();
-                    if (ge != null) {
-                        for (int x = 0; x < ge.Length; x++) {
+                    if (ge != null)
+                    {
+                        for (int x = 0; x < ge.Length; x++)
+                        {
                             ge[x].OnNoLongerClosestGrabbable(HandSide);
                             ge[x].OnNoLongerClosestGrabbable(this);
                         }
@@ -298,12 +330,15 @@ namespace BNG {
                 }
 
                 // Update closest Grabbable
-                if (grabsInTrigger.ClosestGrabbable != null && !HoldingItem) {
+                if (grabsInTrigger.ClosestGrabbable != null && !HoldingItem)
+                {
 
                     // Fire Off Events
                     GrabbableEvents[] ge = grabsInTrigger.ClosestGrabbable.GetComponents<GrabbableEvents>();
-                    if (ge != null) {
-                        for (int x = 0; x < ge.Length; x++) {
+                    if (ge != null)
+                    {
+                        for (int x = 0; x < ge.Length; x++)
+                        {
                             ge[x].OnBecomesClosestGrabbable(HandSide);
                             ge[x].OnBecomesClosestGrabbable(this);
                         }
@@ -312,18 +347,23 @@ namespace BNG {
                 }
             }
 
-            if (grabsInTrigger.ClosestGrabbable != null && !HoldingItem) {
+            if (grabsInTrigger.ClosestGrabbable != null && !HoldingItem)
+            {
                 grabsInTrigger.ClosestGrabbable.AddValidGrabber(this);
             }
 
             // Remote Grabbable Events
             // If last closest was this one, unhighlight object            
-            if (previousClosestRemote != grabsInTrigger.ClosestRemoteGrabbable) {
-                if (previousClosestRemote != null) {
+            if (previousClosestRemote != grabsInTrigger.ClosestRemoteGrabbable)
+            {
+                if (previousClosestRemote != null)
+                {
                     // Fire Off Events
                     GrabbableEvents[] ge = previousClosestRemote.GetComponents<GrabbableEvents>();
-                    if (ge != null) {
-                        for (int x = 0; x < ge.Length; x++) {
+                    if (ge != null)
+                    {
+                        for (int x = 0; x < ge.Length; x++)
+                        {
                             ge[x].OnNoLongerClosestRemoteGrabbable(HandSide);
                             ge[x].OnNoLongerClosestRemoteGrabbable(this);
                         }
@@ -333,12 +373,15 @@ namespace BNG {
                 }
 
                 // Update closest remote Grabbable
-                if (grabsInTrigger.ClosestRemoteGrabbable != null && !HoldingItem) {
+                if (grabsInTrigger.ClosestRemoteGrabbable != null && !HoldingItem)
+                {
 
                     // Fire Off Events 
                     GrabbableEvents[] ge = grabsInTrigger.ClosestRemoteGrabbable.GetComponents<GrabbableEvents>();
-                    if (ge != null) {
-                        for (int x = 0; x < ge.Length; x++) {
+                    if (ge != null)
+                    {
+                        for (int x = 0; x < ge.Length; x++)
+                        {
                             ge[x].OnBecomesClosestRemoteGrabbable(HandSide);
                             ge[x].OnBecomesClosestRemoteGrabbable(this);
                         }
@@ -354,17 +397,20 @@ namespace BNG {
         }
 
         // See if we are inputting controls to grab an item
-        public virtual bool InputCheckGrab() {
+        public virtual bool InputCheckGrab()
+        {
 
             // Nothing nearby to grab
             Grabbable closest = getClosestOrRemote();
 
-            return GetInputDownForGrabbable(closest);           
+            return GetInputDownForGrabbable(closest);
         }
 
-        public virtual bool GetInputDownForGrabbable(Grabbable grabObject) {
+        public virtual bool GetInputDownForGrabbable(Grabbable grabObject)
+        {
 
-            if(grabObject == null) {
+            if (grabObject == null)
+            {
                 return false;
             }
 
@@ -372,20 +418,24 @@ namespace BNG {
             HoldType closestHoldType = getHoldType(grabObject);
             GrabButton closestGrabButton = GetGrabButton(grabObject);
 
-           // Forced grab through script or editor
-            if(ForceGrab) {
+            // Forced grab through script or editor
+            if (ForceGrab)
+            {
                 return true;
             }
             // Hold to grab controls
-            else if (closestHoldType == HoldType.HoldDown) {
+            else if (closestHoldType == HoldType.HoldDown)
+            {
                 bool grabInput = getGrabInput(closestGrabButton) >= GripAmount;
 
-                if (!grabInput && GrabAction != null) {
+                if (!grabInput && GrabAction != null)
+                {
                     // Check Input Action
                     grabInput = GrabAction.action.ReadValue<float>() >= GripAmount;
                 }
 
-                if (closestGrabButton == GrabButton.Grip && !FreshGrip) {
+                if (closestGrabButton == GrabButton.Grip && !FreshGrip)
+                {
                     return false;
                 }
 
@@ -396,40 +446,47 @@ namespace BNG {
                 return grabInput;
             }
             // Check Toggle Controls
-            else if (closestHoldType == HoldType.Toggle) {
+            else if (closestHoldType == HoldType.Toggle)
+            {
                 return getToggleInput(closestGrabButton);
             }
 
             return false;
         }
 
-        HoldType getHoldType(Grabbable grab) {
+        HoldType getHoldType(Grabbable grab)
+        {
             HoldType closestHoldType = grab.Grabtype;
 
             // Inherit from Grabber
-            if (closestHoldType == HoldType.Inherit) {
+            if (closestHoldType == HoldType.Inherit)
+            {
                 closestHoldType = DefaultHoldType;
             }
 
             // Inherit isn't a value in itself. Use "hold down" instead and warn the user
-            if (closestHoldType == HoldType.Inherit) {
+            if (closestHoldType == HoldType.Inherit)
+            {
                 closestHoldType = HoldType.HoldDown;
                 Debug.LogWarning("Inherit found on both Grabber and Grabbable. Consider updating the Grabber's DefaultHoldType");
             }
 
             return closestHoldType;
         }
-        
-        public virtual GrabButton GetGrabButton(Grabbable grab) {
+
+        public virtual GrabButton GetGrabButton(Grabbable grab)
+        {
             GrabButton grabButton = grab.GrabButton;
 
             // Inherit from Grabber
-            if (grabButton == GrabButton.Inherit) {
+            if (grabButton == GrabButton.Inherit)
+            {
                 grabButton = DefaultGrabButton;
             }
 
             // Inherit isn't a value in itself. Use "Grip" instead and warn the user
-            if (grabButton == GrabButton.Inherit) {
+            if (grabButton == GrabButton.Inherit)
+            {
                 grabButton = GrabButton.Grip;
                 Debug.LogWarning("Inherit found on both Grabber and Grabbable. Consider updating the Grabber's DefaultHoldType");
             }
@@ -438,11 +495,14 @@ namespace BNG {
         }
 
 
-        Grabbable getClosestOrRemote() {
-            if (grabsInTrigger.ClosestGrabbable != null) {
+        Grabbable getClosestOrRemote()
+        {
+            if (grabsInTrigger.ClosestGrabbable != null)
+            {
                 return grabsInTrigger.ClosestGrabbable;
             }
-            else if (grabsInTrigger.ClosestRemoteGrabbable != null) {
+            else if (grabsInTrigger.ClosestRemoteGrabbable != null)
+            {
                 return grabsInTrigger.ClosestRemoteGrabbable;
             }
 
@@ -450,12 +510,14 @@ namespace BNG {
         }
 
         // Release conditions are a little different than grab
-        protected virtual bool inputCheckRelease() {
+        protected virtual bool inputCheckRelease()
+        {
 
             var grabbingGrabbable = RemoteGrabbingItem ? flyingGrabbable : HeldGrabbable;
 
             // Can't release anything we're not holding
-            if (grabbingGrabbable == null) {
+            if (grabbingGrabbable == null)
+            {
                 return false;
             }
 
@@ -463,46 +525,58 @@ namespace BNG {
             HoldType closestHoldType = getHoldType(grabbingGrabbable);
             GrabButton closestGrabButton = GetGrabButton(grabbingGrabbable);
 
-            if (closestHoldType == HoldType.HoldDown) {
+            if (closestHoldType == HoldType.HoldDown)
+            {
                 return getGrabInput(closestGrabButton) <= ReleaseGripAmount;
             }
             // Check for toggle controls
-            else if (closestHoldType == HoldType.Toggle) {
+            else if (closestHoldType == HoldType.Toggle)
+            {
                 return getToggleInput(closestGrabButton);
             }
 
             return false;
         }
 
-        protected virtual float getGrabInput(GrabButton btn) {
+        protected virtual float getGrabInput(GrabButton btn)
+        {
             float gripValue = 0;
 
-            if(input == null) {
+            if (input == null)
+            {
                 return 0;
             }
 
             // Left Hand
-            if (HandSide == ControllerHand.Left) {
-                if(btn == GrabButton.GripOrTrigger) {
+            if (HandSide == ControllerHand.Left)
+            {
+                if (btn == GrabButton.GripOrTrigger)
+                {
                     gripValue = Mathf.Max(input.LeftGrip, input.LeftTrigger);
                 }
-                else if (btn == GrabButton.Grip) {
+                else if (btn == GrabButton.Grip)
+                {
                     gripValue = input.LeftGrip;
                 }
-                else if (btn == GrabButton.Trigger) {
+                else if (btn == GrabButton.Trigger)
+                {
                     gripValue = input.LeftTrigger;
                 }
             }
             // Right Hand
-            else if (HandSide == ControllerHand.Right) {
+            else if (HandSide == ControllerHand.Right)
+            {
                 // Either Grip or Trigger will work
-                if (btn == GrabButton.GripOrTrigger) {
+                if (btn == GrabButton.GripOrTrigger)
+                {
                     gripValue = Mathf.Max(input.RightGrip, input.RightTrigger);
                 }
-                else if (btn == GrabButton.Grip) {
+                else if (btn == GrabButton.Grip)
+                {
                     gripValue = input.RightGrip;
                 }
-                else if (btn == GrabButton.Trigger) {
+                else if (btn == GrabButton.Trigger)
+                {
                     gripValue = input.RightTrigger;
                 }
             }
@@ -510,54 +584,68 @@ namespace BNG {
             return gripValue;
         }
 
-        protected virtual bool getToggleInput(GrabButton btn) {
+        protected virtual bool getToggleInput(GrabButton btn)
+        {
 
-            if (input == null) {
+            if (input == null)
+            {
                 return false;
             }
 
             // Left Hand
-            if (HandSide == ControllerHand.Left) {
-                if (btn == GrabButton.GripOrTrigger) {
+            if (HandSide == ControllerHand.Left)
+            {
+                if (btn == GrabButton.GripOrTrigger)
+                {
                     return input.LeftGripDown || input.LeftTriggerDown;
                 }
-                else if (btn == GrabButton.Grip) {
+                else if (btn == GrabButton.Grip)
+                {
                     return input.LeftGripDown;
                 }
-                else if (btn == GrabButton.Trigger) {
+                else if (btn == GrabButton.Trigger)
+                {
                     return input.LeftTriggerDown;
                 }
             }
             // Right Hand
-            else if (HandSide == ControllerHand.Right) {
-                if (btn == GrabButton.GripOrTrigger) {
+            else if (HandSide == ControllerHand.Right)
+            {
+                if (btn == GrabButton.GripOrTrigger)
+                {
                     return input.RightGripDown || input.RightTriggerDown;
                 }
-                else if (btn == GrabButton.Grip) {
+                else if (btn == GrabButton.Grip)
+                {
                     return input.RightGripDown;
                 }
-                else if (btn == GrabButton.Trigger) {
+                else if (btn == GrabButton.Trigger)
+                {
                     return input.RightTriggerDown;
                 }
             }
 
             return false;
-        }               
+        }
 
-        public virtual bool TryGrab() {
+        public virtual bool TryGrab()
+        {
             // Already holding something
-            if (HeldGrabbable != null) {
+            if (HeldGrabbable != null)
+            {
                 return false;
-            }            
+            }
 
             // Activate Nearby Grabbable
-            if (grabsInTrigger.ClosestGrabbable != null) {
-                GrabGrabbable(grabsInTrigger.ClosestGrabbable);                
-                
+            if (grabsInTrigger.ClosestGrabbable != null)
+            {
+                GrabGrabbable(grabsInTrigger.ClosestGrabbable);
+
                 return true;
             }
             // If no immediate grabbable, see if remote is available to pull
-            else if(grabsInTrigger.ClosestRemoteGrabbable != null && flyingGrabbable == null) {
+            else if (grabsInTrigger.ClosestRemoteGrabbable != null && flyingGrabbable == null)
+            {
                 flyingGrabbable = grabsInTrigger.ClosestRemoteGrabbable;
                 flyingGrabbable.GrabRemoteItem(this);
             }
@@ -566,10 +654,12 @@ namespace BNG {
         }
 
         // Assign new held Item, then grab the item into our hand / controller
-        public virtual void GrabGrabbable(Grabbable item) {
+        public virtual void GrabGrabbable(Grabbable item)
+        {
 
             // We are trying to grab something else
-            if(flyingGrabbable != null && item != flyingGrabbable) {
+            if (flyingGrabbable != null && item != flyingGrabbable)
+            {
                 return;
             }
 
@@ -577,7 +667,8 @@ namespace BNG {
             resetFlyingGrabbable();
 
             // Drop whatever we were holding
-            if (HeldGrabbable != null && HeldGrabbable) {
+            if (HeldGrabbable != null && HeldGrabbable)
+            {
                 TryRelease();
             }
 
@@ -598,10 +689,12 @@ namespace BNG {
         }
 
         // Dropped whatever was in hand
-        public virtual void DidDrop() {
+        public virtual void DidDrop()
+        {
 
             // Fire off Grabber Release event
-            if (onReleaseEvent != null && HeldGrabbable != null) {
+            if (onReleaseEvent != null && HeldGrabbable != null)
+            {
                 onReleaseEvent.Invoke(HeldGrabbable);
             }
 
@@ -616,14 +709,18 @@ namespace BNG {
             ResetHandGraphics();
         }
 
-        public virtual void HideHandGraphics() {
-            if (HandsGraphics != null) {
+        public virtual void HideHandGraphics()
+        {
+            if (HandsGraphics != null)
+            {
                 HandsGraphics.gameObject.SetActive(false);
             }
         }
 
-        public virtual void ResetHandGraphics() {
-            if(HandsGraphics != null) {
+        public virtual void ResetHandGraphics()
+        {
+            if (HandsGraphics != null)
+            {
                 // Make visible again
                 HandsGraphics.gameObject.SetActive(true);
 
@@ -634,8 +731,10 @@ namespace BNG {
             }
         }
 
-        public virtual void TryRelease() {
-            if (HeldGrabbable != null && HeldGrabbable.CanBeDropped) {
+        public virtual void TryRelease()
+        {
+            if (HeldGrabbable != null && HeldGrabbable.CanBeDropped)
+            {
                 HeldGrabbable.DropItem(this);
             }
 
@@ -643,21 +742,102 @@ namespace BNG {
             resetFlyingGrabbable();
         }
 
-        void resetFlyingGrabbable() {
+        void resetFlyingGrabbable()
+        {
             // No longer flying at us
-            if (flyingGrabbable != null) {
+            if (flyingGrabbable != null)
+            {
                 flyingGrabbable.ResetGrabbing();
                 flyingGrabbable = null;
                 flyingTime = 0;
             }
-        }       
+        }
 
-        public virtual Vector3 GetGrabberAveragedVelocity() {
+        public virtual Vector3 GetGrabberAveragedVelocity()
+        {
             return velocityTracker.GetAveragedVelocity();
         }
 
-        public virtual Vector3 GetGrabberAveragedAngularVelocity() {
+        public virtual Vector3 GetGrabberAveragedAngularVelocity()
+        {
             return velocityTracker.GetAveragedAngularVelocity();
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.name == "AmmoInventory" && !HoldingItem)
+            {
+                if (ControllerBinding.LeftGripDown.GetDown() || ControllerBinding.RightGripDown.GetDown())
+                {
+                    AmmoInven.Instance.pickUpAmmo = false;
+                    switch (WeaponInven.Instance.currentWeapon)
+                    {
+                        case WeaponType.Pistol:
+                            if (AmmoInven.Instance.pistolAmmo <= 0)
+                            {
+                                return;
+                            }
+                            GameObject pistolAmmo = Instantiate(pistolClip, transform.position, transform.rotation);
+                            pistolAmmo.transform.parent = transform;
+                            Bullet[] ammoInClip = pistolAmmo.GetComponentsInChildren<Bullet>(false);
+                            if (AmmoInven.Instance.pistolAmmo < ammoInClip.Length)
+                            {
+                                for (int i = 0; i < ammoInClip.Length - AmmoInven.Instance.pistolAmmo; i++)
+                                {
+                                    GameObject.Destroy(ammoInClip[i]);
+                                }
+                                AmmoInven.Instance.pistolAmmo = 0;
+                            }
+                            else
+                            {
+                                AmmoInven.Instance.pistolAmmo -= ammoInClip.Length;
+                            }
+                            GrabGrabbable(pistolAmmo.GetComponent<Grabbable>());
+                            break;
+                        case WeaponType.Shotgun:
+                            if (AmmoInven.Instance.shotgunAmmo <= 0)
+                            {
+                                return;
+                            }
+                            GameObject shotgunAmmo = Instantiate(shotgunShell, transform.position, transform.rotation);
+                            AmmoInven.Instance.shotgunAmmo--;
+                            GrabGrabbable(shotgunAmmo.GetComponent<Grabbable>());
+                            break;
+                        case WeaponType.Rifle:
+                            if (AmmoInven.Instance.rifleAmmo <= 0)
+                            {
+                                return;
+                            }
+                            GameObject rifleAmmo = Instantiate(rifleClip, transform.position, transform.rotation);
+                            rifleAmmo.transform.parent = transform;
+                            Bullet[] rifleAmmoInClip = rifleAmmo.GetComponentsInChildren<Bullet>(false);
+                            if (AmmoInven.Instance.rifleAmmo < rifleAmmoInClip.Length)
+                            {
+                                for (int i = 0; i < rifleAmmoInClip.Length - AmmoInven.Instance.pistolAmmo; i++)
+                                {
+                                    GameObject.Destroy(rifleAmmoInClip[i]);
+                                }
+                                AmmoInven.Instance.rifleAmmo = 0;
+                            }
+                            else
+                            {
+                                AmmoInven.Instance.rifleAmmo -= rifleAmmoInClip.Length;
+                            }
+                            GrabGrabbable(rifleAmmo.GetComponent<Grabbable>());
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.name == "AmmoInventory")
+            {
+                AmmoInven.Instance.pickUpAmmo = true;
+            }
         }
     }
 }

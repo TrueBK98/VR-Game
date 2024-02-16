@@ -721,6 +721,11 @@ namespace BNG {
 
         public void AddWeaponToInventory()
         {
+            if (thisGrabber.transform.parent.name != "RightController")
+            {
+                return;
+            }
+
             switch (type)
             {
                 case WeaponType.Pistol:
@@ -730,14 +735,12 @@ namespace BNG {
                     break;
                 case WeaponType.Shotgun:
                     WeaponInven.Instance.weapons[1]= type;
-                    WeaponInven.Instance.CurrentWeapon = type;
-                    break;
-                case WeaponType.Knife:
-                    WeaponInven.Instance.weapons[2] = type;
+                    WeaponInven.Instance.activeWeapon = this.gameObject;
                     WeaponInven.Instance.CurrentWeapon = type;
                     break;
                 case WeaponType.Rifle:
-                    WeaponInven.Instance.weapons[3] = type;
+                    WeaponInven.Instance.weapons[2] = type;
+                    WeaponInven.Instance.activeWeapon = this.gameObject;
                     WeaponInven.Instance.CurrentWeapon = type;
                     break;
                 default:

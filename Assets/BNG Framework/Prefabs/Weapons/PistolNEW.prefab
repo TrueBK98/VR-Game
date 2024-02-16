@@ -3554,7 +3554,6 @@ GameObject:
   - component: {fileID: 5716214762585700687}
   - component: {fileID: 260408577}
   - component: {fileID: 260408578}
-  - component: {fileID: 260408579}
   - component: {fileID: 141909561}
   m_Layer: 10
   m_Name: PistolNEW
@@ -3655,7 +3654,7 @@ MonoBehaviour:
   ParentToHands: 1
   ParentHandModel: 1
   SnapHandModel: 1
-  CanBeDropped: 0
+  CanBeDropped: 1
   CanBeSnappedToSnapZone: 1
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
@@ -3825,7 +3824,7 @@ MonoBehaviour:
   RecoilDuration: 0.3
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1793
   TriggerTransform: {fileID: 8672836845230804232}
   SlideTransform: {fileID: 6024261394720629044}
   MuzzlePointTransform: {fileID: 6024261394930030411}
@@ -4029,25 +4028,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.019911647, y: 0.025583297, z: 0.05520439}
   m_Center: {x: 0.0003091693, y: 0.03089106, z: 0.03573072}
---- !u!114 &260408579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6024261396410624980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 821cfb7c3eab3764bbb57d764c6e26d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 0
-  ColliderRigidbody: {fileID: 0}
-  MinForce: 0.1
-  LastRelativeVelocity: 0
-  LastDamageForce: 0
-  TakeCollisionDamage: 0
-  CollisionDamage: 5
 --- !u!114 &141909561
 MonoBehaviour:
   m_ObjectHideFlags: 0

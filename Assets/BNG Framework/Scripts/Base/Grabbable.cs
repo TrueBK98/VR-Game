@@ -1288,6 +1288,7 @@ namespace BNG {
                 if (afterCollision) {
                     Grabber g = GetPrimaryGrabber();
                     transform.parent = g.transform;
+                    
                 }
                 else {
                     transform.parent = null;

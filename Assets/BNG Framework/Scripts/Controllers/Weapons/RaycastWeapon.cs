@@ -8,7 +8,17 @@ namespace BNG {
     /// <summary>
     /// An example weapon script that can fire Raycasts or Projectile objects
     /// </summary>
-    public class RaycastWeapon : GrabbableEvents {
+    public class RaycastWeapon : GrabbableEvents, IDataPersistence {
+        public static SerializableDictionary<string, bool> weaponsPickedUp = new SerializableDictionary<string, bool>();
+        [SerializeField] private string id;
+
+        [ContextMenu("Generate guid for id")]
+        private void GenerateGuid()
+        {
+            id = System.Guid.NewGuid().ToString();
+        }
+
+        private bool isPickedUp = false;
 
         [Header("General : ")]
         /// <summary>
@@ -726,6 +736,7 @@ namespace BNG {
                 return;
             }
 
+            isPickedUp = true;
             switch (type)
             {
                 case WeaponType.Pistol:
@@ -746,6 +757,60 @@ namespace BNG {
                 default:
                     break;
             }
+
+            if (RaycastWeapon.weaponsPickedUp.ContainsKey(id))
+            {
+                RaycastWeapon.weaponsPickedUp.Remove(id);
+            }
+            RaycastWeapon.weaponsPickedUp.Add(id, isPickedUp);
+        }
+
+        public void LoadData(GameData data)
+        {
+            GlobalVar.weaponsPickedUp = GameData.Instance.weaponsPickedUp;
+            GlobalVar.weaponsPickedUp.TryGetValue(id, out isPickedUp);
+            try
+            {
+                if (isPickedUp && gameObject != null)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+            catch (System.Exception)
+            {
+            }
+            
+        }
+
+        public void LoadLastCheckpoint()
+        {
+            if (id == null)
+            {
+                return;
+            }
+
+            GlobalVar.weaponsPickedUp.TryGetValue(id, out isPickedUp);
+            try
+            {
+                if (isPickedUp && gameObject != null)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+            catch (System.Exception)
+            {
+            }
+
+        }
+
+        public void SaveData(GameData data)
+        {
+            if (GlobalVar.weaponsPickedUp.ContainsKey(id))
+            {
+                GlobalVar.weaponsPickedUp.Remove(id);
+            }
+            GlobalVar.weaponsPickedUp.Add(id, isPickedUp);
+            GameData.Instance.weaponsPickedUp = GlobalVar.weaponsPickedUp;
         }
     }
 

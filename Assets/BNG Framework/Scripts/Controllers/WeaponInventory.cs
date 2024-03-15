@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 using System.Linq;
 using TMPro;
 
-public class WeaponInventory : MonoBehaviour
+public class WeaponInventory : MonoBehaviour, IDataPersistence
 {
     public WeaponType[] weapons;
     public WeaponType currentWeapon = WeaponType.BareHand;
@@ -19,8 +19,9 @@ public class WeaponInventory : MonoBehaviour
     public GameObject activeWeapon = null;
     public GameObject pistol;
     public GameObject shotgun;
-    public GameObject knife;
     public GameObject rifle;
+    public GameObject pistolClip;
+    public GameObject rifleClip;
     public Grabber grabber;
     public TextMeshProUGUI ammoText;
 
@@ -110,18 +111,50 @@ public class WeaponInventory : MonoBehaviour
                     activeWeapon.GetComponent<Grabbable>().CanBeDropped = false;
                     pooledWeapons.Add(activeWeapon);
                     grabber.GrabGrabbable(activeWeapon.GetComponent<Grabbable>());
+                    activeWeapon.GetComponent<RaycastWeapon>().BulletInChamber = GlobalVar.pistolLoadedShot;
+                    if (GlobalVar.pistolBulletCount > 0)
+                    {
+                        GameObject newPistolClip = Instantiate(pistolClip, activeWeapon.GetNamedChild("ClipInsert").transform.position, activeWeapon.GetNamedChild("ClipInsert").transform.rotation);
+                        newPistolClip.transform.SetParent(activeWeapon.GetNamedChild("ClipInsert").transform);
+                        Bullet[] ammoInClip = newPistolClip.GetComponentsInChildren<Bullet>(false);
+                        for (int i = 0; i < ammoInClip.Length - GlobalVar.pistolBulletCount; i++)
+                        {
+                            GameObject.Destroy(ammoInClip[i]);
+                        }
+                    }
                     break;
                 case WeaponType.Shotgun:
                     activeWeapon = Instantiate(shotgun, grabber.transform.position, grabber.transform.rotation);
                     activeWeapon.GetComponent<Grabbable>().CanBeDropped = false;
                     pooledWeapons.Add(activeWeapon);
                     grabber.GrabGrabbable(activeWeapon.GetComponent<Grabbable>());
+                    activeWeapon.GetComponent<RaycastWeapon>().BulletInChamber = GlobalVar.shotgunLoadedShot;
+                    if (GlobalVar.shotgunBulletCount > 0)
+                    {
+                        for (int i = 0; i < GlobalVar.shotgunBulletCount; i++)
+                        {
+                            GameObject b = new GameObject();
+                            b.AddComponent<Bullet>();
+                            b.transform.parent = activeWeapon.transform;
+                        }
+                    }
                     break;
                 case WeaponType.Rifle:
                     activeWeapon = Instantiate(rifle, grabber.transform.position, grabber.transform.rotation);
                     activeWeapon.GetComponent<Grabbable>().CanBeDropped = false;
                     pooledWeapons.Add(activeWeapon);
                     grabber.GrabGrabbable(activeWeapon.GetComponent<Grabbable>());
+                    activeWeapon.GetComponent<RaycastWeapon>().BulletInChamber = GlobalVar.rifleLoadedShot;
+                    if (GlobalVar.rifleBulletCount > 0)
+                    {
+                        GameObject newRifleClip = Instantiate(rifleClip, activeWeapon.GetNamedChild("ClipInsert").transform.position, activeWeapon.GetNamedChild("ClipInsert").transform.rotation);
+                        newRifleClip.transform.SetParent(activeWeapon.GetNamedChild("ClipInsert").transform);
+                        Bullet[] ammoInClip = newRifleClip.GetComponentsInChildren<Bullet>(false);
+                        for (int i = 0; i < ammoInClip.Length - GlobalVar.rifleBulletCount; i++)
+                        {
+                            GameObject.Destroy(ammoInClip[i]);
+                        }
+                    }
                     break;
                 default:
                     break;
@@ -135,37 +168,41 @@ public class WeaponInventory : MonoBehaviour
 
     [Tooltip("Input used to open the weapon selector")]
     public ControllerBinding ToggleHandsInput = ControllerBinding.RightThumbstickDown;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         weapons = new WeaponType[3];
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        switch (currentWeapon)
+        if (activeWeapon != null)
         {
-            case WeaponType.BareHand:
-                ammoText.text = "0/0";
-                break;
-            case WeaponType.Pistol:
-                int pistolLoadedShot = activeWeapon.GetComponent<RaycastWeapon>().BulletInChamber ? 1 : 0;
-                ammoText.text = (activeWeapon.GetComponent<RaycastWeapon>().GetBulletCount() + pistolLoadedShot).ToString() + "/" + AmmoInven.Instance.pistolAmmo.ToString();
-                break;
-            case WeaponType.Shotgun:
-                int shotgunLoadedShot = activeWeapon.GetComponent<RaycastWeapon>().BulletInChamber ? 1 : 0;
-                ammoText.text = (activeWeapon.GetComponent<RaycastWeapon>().GetBulletCount() + shotgunLoadedShot).ToString() + "/" + AmmoInven.Instance.shotgunAmmo.ToString();
-                break;
-            case WeaponType.Rifle:
-                int rifleLoadedShot = activeWeapon.GetComponent<RaycastWeapon>().BulletInChamber ? 1 : 0;
-                ammoText.text = (activeWeapon.GetComponent<RaycastWeapon>().GetBulletCount() + rifleLoadedShot).ToString() + "/" + AmmoInven.Instance.rifleAmmo.ToString();
-                break;
-            default:
-                break;
+            switch (currentWeapon)
+            {
+                case WeaponType.BareHand:
+                    ammoText.text = "0/0";
+                    break;
+                case WeaponType.Pistol:
+                    int pistolLoadedShot = activeWeapon.GetComponent<RaycastWeapon>().BulletInChamber ? 1 : 0;
+                    ammoText.text = (activeWeapon.GetComponent<RaycastWeapon>().GetBulletCount() + pistolLoadedShot).ToString() + "/" + AmmoInven.Instance.pistolAmmo.ToString();
+                    break;
+                case WeaponType.Shotgun:
+                    int shotgunLoadedShot = activeWeapon.GetComponent<RaycastWeapon>().BulletInChamber ? 1 : 0;
+                    ammoText.text = (activeWeapon.GetComponent<RaycastWeapon>().GetBulletCount() + shotgunLoadedShot).ToString() + "/" + AmmoInven.Instance.shotgunAmmo.ToString();
+                    break;
+                case WeaponType.Rifle:
+                    int rifleLoadedShot = activeWeapon.GetComponent<RaycastWeapon>().BulletInChamber ? 1 : 0;
+                    ammoText.text = (activeWeapon.GetComponent<RaycastWeapon>().GetBulletCount() + rifleLoadedShot).ToString() + "/" + AmmoInven.Instance.rifleAmmo.ToString();
+                    break;
+                default:
+                    break;
+            }
         }
 
-        if (ToggleHandsInput.GetDown())
+        if (ToggleHandsInput.GetDown() && !Player.Instance.GetComponent<HPController>().destroyed)
         {
             grabber.GetComponent<SphereCollider>().isTrigger = false;
             if (weaponSelector == null)
@@ -206,6 +243,49 @@ public class WeaponInventory : MonoBehaviour
         {
             Destroy(weaponSelector);
             grabber.GetComponent<SphereCollider>().isTrigger = true;
+        }
+    }
+
+    public void LoadData(GameData data)
+    {
+        GlobalVar.weapons = GameData.Instance.weapons;
+        GlobalVar.pistolLoadedShot = GameData.Instance.pistolLoadedShot;
+        GlobalVar.rifleLoadedShot = GameData.Instance.rifleLoadedShot;
+        GlobalVar.shotgunLoadedShot = GameData.Instance.shotgunLoadedShot;
+        GlobalVar.pistolBulletCount = GameData.Instance.pistolBulletCount;
+        GlobalVar.shotgunBulletCount = GameData.Instance.shotgunBulletCount;
+        GlobalVar.rifleBulletCount = GameData.Instance.rifleBulletCount;
+    }
+
+    public void SaveData(GameData data)
+    {
+        GlobalVar.weapons = weapons;
+        GameData.Instance.weapons = GlobalVar.weapons;
+        foreach (GameObject weapon in pooledWeapons)
+        {
+            switch (weapon.GetComponent<RaycastWeapon>().type)
+            {
+                case WeaponType.Pistol:
+                    GlobalVar.pistolLoadedShot = weapon.GetComponent<RaycastWeapon>().BulletInChamber;
+                    GameData.Instance.pistolLoadedShot = GlobalVar.pistolLoadedShot;
+                    GlobalVar.pistolBulletCount = weapon.GetComponent<RaycastWeapon>().GetBulletCount();
+                    GameData.Instance.pistolBulletCount = GlobalVar.pistolBulletCount;
+                    break;
+                case WeaponType.Shotgun:
+                    GlobalVar.shotgunLoadedShot = weapon.GetComponent<RaycastWeapon>().BulletInChamber;
+                    GameData.Instance.shotgunLoadedShot = GlobalVar.shotgunLoadedShot;
+                    GlobalVar.shotgunBulletCount = weapon.GetComponent<RaycastWeapon>().GetBulletCount();
+                    GameData.Instance.shotgunBulletCount = GlobalVar.shotgunBulletCount;
+                    break;
+                case WeaponType.Rifle:
+                    GlobalVar.rifleLoadedShot = weapon.GetComponent<RaycastWeapon>().BulletInChamber;
+                    GameData.Instance.rifleLoadedShot = GlobalVar.rifleLoadedShot;
+                    GlobalVar.rifleBulletCount = weapon.GetComponent<RaycastWeapon>().GetBulletCount();
+                    GameData.Instance.rifleBulletCount = GlobalVar.rifleBulletCount;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

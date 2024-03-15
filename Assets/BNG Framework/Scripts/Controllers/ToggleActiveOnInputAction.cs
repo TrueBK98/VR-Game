@@ -23,6 +23,11 @@ namespace BNG {
 
         public void ToggleActive(InputAction.CallbackContext context) {
             if(ToggleObject) {
+                if (Player.Instance.GetComponent<HPController>().destroyed)
+                {
+                    return;
+                }
+
                 ToggleObject.SetActive(!ToggleObject.activeSelf);
                 if (ToggleObject.activeSelf)
                 {

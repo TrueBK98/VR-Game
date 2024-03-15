@@ -6,7 +6,6 @@ using LTA.DesignPattern;
 public class DataManager : Singleton<DataManager>
 {
     private bool dataLoaded = false;
-    public LevelVO levelVO;
     public MapVO mapVO;
 
     public void LoadData()
@@ -15,7 +14,6 @@ public class DataManager : Singleton<DataManager>
         {
             return;
         }
-        levelVO = new LevelVO();
         mapVO = new MapVO();
 
         dataLoaded = true;

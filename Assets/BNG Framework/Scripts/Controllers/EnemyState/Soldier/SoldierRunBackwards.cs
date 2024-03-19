@@ -14,14 +14,14 @@ public class SoldierRunBackwards : MonoBehaviour, IEnemyState
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Run Backwards"))
         {
-            animator.Play("Run Backwards");
+            animator.Play("Run Backwards", 0);
         }
 
         GetComponent<EnemyController>().Move(-1, 0);
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }

@@ -12,6 +12,8 @@ namespace BNG {
         public static SerializableDictionary<string, bool> weaponsPickedUp = new SerializableDictionary<string, bool>();
         [SerializeField] private string id;
 
+        private int layerEnemy;
+
         [ContextMenu("Generate guid for id")]
         private void GenerateGuid()
         {
@@ -269,6 +271,8 @@ namespace BNG {
             ws = GetComponentInChildren<WeaponSlide>();            
 
             updateChamberedBullet();
+
+            layerEnemy = LayerMask.NameToLayer("Enemy");
         }
 
         public override void OnTrigger(float triggerValue) {
@@ -477,7 +481,7 @@ namespace BNG {
 
             // push object if rigidbody
             Rigidbody hitRigid = hit.collider.attachedRigidbody;
-            if (hitRigid != null) {
+            if (hitRigid != null && hit.transform.gameObject.layer != layerEnemy) {
                 hitRigid.AddForceAtPosition(BulletImpactForce * MuzzlePointTransform.forward, hit.point);
             }
 

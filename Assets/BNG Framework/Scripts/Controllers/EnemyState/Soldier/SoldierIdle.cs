@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoldierIdle : MonoBehaviour, IEnemyState
 {
     Animator animator;
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
     }

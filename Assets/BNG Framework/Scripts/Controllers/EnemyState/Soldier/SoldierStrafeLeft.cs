@@ -14,14 +14,14 @@ public class SoldierStrafeLeft : MonoBehaviour, IEnemyState
 
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Strafe Left"))
         {
-            animator.Play("Strafe Left");
+            animator.Play("Strafe Left", 0);
         }
 
         GetComponent<EnemyController>().Move(0, -1);
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }

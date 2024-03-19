@@ -1,69 +1,51 @@
+using BNG;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEditor.FilePathAttribute;
 
-public interface IEnemyState
-{
-    void Action(State state);
-}
+
 
 public class EnemyController : MoveController
 {
-    [SerializeField]
-    State currentState;
-    IEnemyState[] enemyStates;
-    void Start()
+    protected float target;
+    protected float r;
+
+    protected Animator animator;
+    
+    protected void Awake()
     {
-        currentState = State.IDLE;
+        animator = GetComponent<Animator>();
         speed = 2.0f;
-        enemyStates = GetComponents<IEnemyState>();
+        target = transform.rotation.y;
     }
 
-    public State CurrentState
-    { 
-        set 
-        {
-            currentState = value;
-        }
-        get { return currentState; } 
-    }
+    
     // Update is called once per frame
-    int count  = 0;
-    void Update()
+    
+    int count2 = 0;
+    int count3 = 0;
+    protected void Update()
     {
-        /*if (count > 300)
+
+        
+
+        /*if (count2 > 2000)
         {
-            if (currentState == State.IDLE)
-            {
-                CurrentState = State.RUN_FOWARD;
-            }
-            else if (currentState == State.RUN_FOWARD)
-            {
-                CurrentState = State.RUN_BACKWARD;
-            }
-            else if (currentState == State.RUN_BACKWARD)
-            {
-                CurrentState = State.STRAFE_RIGHT;
-            }
-            else if (currentState == State.STRAFE_RIGHT)
-            {
-                CurrentState = State.STRAFE_LEFT;
-            }
-            else if (currentState == State.STRAFE_LEFT)
-            {
-                CurrentState = State.IDLE;
-            }
-            count = 0;
+            isShooting = false;
         }
         else
         {
-            count++;
-        }
-
-        foreach (IEnemyState state in enemyStates)
-        {
-            state.Action(currentState);
+            isShooting = true;
+            count2++;
         }*/
+
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target, ref r, 0.1f);
+        transform.rotation = Quaternion.Euler(0, angle, 0);
+
+        
     }
 
     public static bool CheckAnyActiveEnemy()
@@ -76,6 +58,18 @@ public class EnemyController : MoveController
             }
         }
         return false;
+    }
+
+    public void ChangeAngle(float targetAngle)
+    {
+        target = targetAngle;
+    }
+
+    
+
+    public virtual void GetHurt()
+    {
+        animator.Play("Hit Reaction", 2);
     }
 }
 

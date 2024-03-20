@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldierStrafeRight : MonoBehaviour, IEnemyState
+public class SoldierStrafeRight : MonoBehaviour, IEnemySubState
 {
     Animator animator;
-    public void Action(State state)
+    public void Action(SubState state)
     {
-        if (state != State.STRAFE_RIGHT)
+        if (state != SubState.STRAFE_RIGHT)
         {
             return;
         }
@@ -17,7 +17,7 @@ public class SoldierStrafeRight : MonoBehaviour, IEnemyState
             animator.Play("Strafe Right", 0);
         }
 
-        GetComponent<EnemyController>().Move(0, 1);
+        //GetComponent<EnemyController>().Move(0, 1);
     }
 
     // Start is called before the first frame update

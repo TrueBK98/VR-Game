@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldierRunFowards : MonoBehaviour, IEnemyState
+public class SoldierRunFowards : MonoBehaviour, IEnemySubState
 {
     Animator animator;
-    public void Action(State state)
+    public void Action(SubState state)
     {
-        if (state != State.RUN_FOWARD)
+        if (state != SubState.RUN_FOWARD)
         {
             return;
         }
@@ -18,7 +18,7 @@ public class SoldierRunFowards : MonoBehaviour, IEnemyState
             animator.Play("Rifle Run", 0);
         }
 
-        GetComponent<EnemyController>().Move(1, 0);
+        //GetComponent<EnemyController>().Move(1, 0);
     }
 
     // Start is called before the first frame update

@@ -33,11 +33,10 @@ public class EnemySolder : EnemyController
     }
 
     int count = 0;
-    // Update is called once per frame
-    new void Update()
+
+    public void FixedUpdate()
     {
-        base.Update();
-        if (count > 30)
+        if (count > 8)
         {
             //GetComponent<Damageable>().DealDamage(1);
             if (animator.GetBool("isShooting")) { Shoot(); }

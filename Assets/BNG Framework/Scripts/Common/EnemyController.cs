@@ -42,10 +42,8 @@ public class EnemyController : MoveController
             count2++;
         }*/
 
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target, ref r, 0.1f);
-        transform.rotation = Quaternion.Euler(0, angle, 0);
-
-        
+        /*float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target, ref r, 0.1f);
+        transform.rotation = Quaternion.Euler(0, angle, 0);*/
     }
 
     public static bool CheckAnyActiveEnemy()
@@ -74,6 +72,12 @@ public class EnemyController : MoveController
 }
 
 public enum State
+{
+    IDLE,
+    COMBAT
+}
+
+public enum SubState
 {
     IDLE,
     RUN_FOWARD,

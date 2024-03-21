@@ -7565,6 +7565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae1334e1a843914ea215ac160781472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   MaxRange: 25
   Damage: 50
   FiringMethod: 0
@@ -7584,7 +7585,7 @@ MonoBehaviour:
   RecoilDuration: 0.3
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1289
   TriggerTransform: {fileID: 1699639747979966071}
   SlideTransform: {fileID: 0}
   MuzzlePointTransform: {fileID: 5438212931875097829}

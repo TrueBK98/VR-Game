@@ -10,16 +10,12 @@ using static UnityEditor.FilePathAttribute;
 
 public class EnemyController : MoveController
 {
-    protected float target;
-    protected float r;
-
     protected Animator animator;
     
     protected void Awake()
     {
         animator = GetComponent<Animator>();
         speed = 2.0f;
-        target = transform.rotation.y;
     }
 
     
@@ -30,7 +26,7 @@ public class EnemyController : MoveController
     protected void Update()
     {
 
-        
+
 
         /*if (count2 > 2000)
         {
@@ -41,9 +37,6 @@ public class EnemyController : MoveController
             isShooting = true;
             count2++;
         }*/
-
-        /*float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target, ref r, 0.1f);
-        transform.rotation = Quaternion.Euler(0, angle, 0);*/
     }
 
     public static bool CheckAnyActiveEnemy()
@@ -57,13 +50,6 @@ public class EnemyController : MoveController
         }
         return false;
     }
-
-    public void ChangeAngle(float targetAngle)
-    {
-        target = targetAngle;
-    }
-
-    
 
     public virtual void GetHurt()
     {

@@ -52,4 +52,22 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
         Destroy(GetComponent<SoldierStrafeLeft>());
         Destroy(GetComponent<SoldierStrafeRight>());
     }
+
+    public void DisableSelf(State state)
+    {
+        if (state == State.COMBAT)
+        {
+            return;
+        }
+        this.enabled = false;
+    }
+
+    public void EnableSelf(State state)
+    {
+        if (state != State.COMBAT)
+        {
+            return;
+        }
+        this.enabled = true;
+    }
 }

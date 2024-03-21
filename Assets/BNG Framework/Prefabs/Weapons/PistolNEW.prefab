@@ -1409,7 +1409,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 4000
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!1 &2906948018756047021
 GameObject:
   m_ObjectHideFlags: 0
@@ -3805,6 +3805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae1334e1a843914ea215ac160781472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: e21acf59-f57a-49f8-bb87-45716f4ebfa6
   MaxRange: 25
   Damage: 25
   FiringMethod: 0
@@ -3824,7 +3825,7 @@ MonoBehaviour:
   RecoilDuration: 0.3
   ValidLayers:
     serializedVersion: 2
-    m_Bits: 1793
+    m_Bits: 1289
   TriggerTransform: {fileID: 8672836845230804232}
   SlideTransform: {fileID: 6024261394720629044}
   MuzzlePointTransform: {fileID: 6024261394930030411}
@@ -5129,6 +5130,11 @@ PrefabInstance:
     - target: {fileID: 4213795611944346747, guid: 9e3b0bca4dce07c4cac56011bea1487d,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799183511233398105, guid: 9e3b0bca4dce07c4cac56011bea1487d,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

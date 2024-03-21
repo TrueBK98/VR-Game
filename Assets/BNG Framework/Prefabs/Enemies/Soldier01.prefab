@@ -1380,6 +1380,7 @@ GameObject:
   - component: {fileID: 2420394163996851772}
   - component: {fileID: 4385251600315101249}
   - component: {fileID: 706343825809699144}
+  - component: {fileID: 177559481377824144}
   m_Layer: 3
   m_Name: Soldier01
   m_TagString: Untagged
@@ -1522,6 +1523,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  nearbyAllyEnemies: []
+  detectNearbyDistance: 9.679839
+  viewRadius: 33.31323
+  viewAngle: 90
+  layerPlayer:
+    serializedVersion: 2
+    m_Bits: 512
+  layerObstacle:
+    serializedVersion: 2
+    m_Bits: 64
+  headTransform: {fileID: 3663439884545240801}
 --- !u!114 &2420394163996851772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,6 +1547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  patrolPoints: []
+  restTimer: 300
 --- !u!114 &4385251600315101249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1594,6 +1608,28 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   destroyed: 0
+--- !u!195 &177559481377824144
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907260298477579236}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 360
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &3923407456594715375
 GameObject:
   m_ObjectHideFlags: 0

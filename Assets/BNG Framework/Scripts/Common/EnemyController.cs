@@ -20,23 +20,8 @@ public class EnemyController : MoveController
 
     
     // Update is called once per frame
-    
-    int count2 = 0;
-    int count3 = 0;
     protected void Update()
     {
-
-
-
-        /*if (count2 > 2000)
-        {
-            isShooting = false;
-        }
-        else
-        {
-            isShooting = true;
-            count2++;
-        }*/
     }
 
     public static bool CheckAnyActiveEnemy()
@@ -60,7 +45,7 @@ public class EnemyController : MoveController
 public enum State
 {
     IDLE,
-    COMBAT
+    COMBAT,
 }
 
 public enum SubState
@@ -69,5 +54,8 @@ public enum SubState
     RUN_FOWARD,
     RUN_BACKWARD,
     STRAFE_LEFT,
-    STRAFE_RIGHT
+    STRAFE_RIGHT,
+    SHOOTING,
+    CHASE,
+    ATTACK
 }

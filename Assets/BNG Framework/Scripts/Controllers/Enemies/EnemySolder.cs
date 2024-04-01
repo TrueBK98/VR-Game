@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySolder : EnemyController
+public class EnemySoldier : EnemyController
 {
     [SerializeField] Transform muzzlePointTransform;
     [SerializeField] float MaxRange, damage;

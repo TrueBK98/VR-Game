@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class SoldierCombatState : MonoBehaviour, IEnemyState
 {
     [SerializeField]
     SubState currentState;
     IEnemySubState[] enemySubStates;
+    Animator animator;
     public SubState CurrentState
     {
         get { return currentState; }
@@ -20,6 +22,11 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
                 subState.Action(currentState);
             }
         }
+    }
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
     }
 
     public void AddSubStates(State state)
@@ -34,6 +41,7 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
         gameObject.AddComponent<SoldierRunFowards>();
         gameObject.AddComponent<SoldierStrafeLeft>();
         gameObject.AddComponent<SoldierStrafeRight>();
+        gameObject.AddComponent<SoldierShooting>();
 
         enemySubStates = GetComponents<IEnemySubState>();
         CurrentState = SubState.IDLE;
@@ -51,6 +59,7 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
         Destroy(GetComponent<SoldierRunFowards>());
         Destroy(GetComponent<SoldierStrafeLeft>());
         Destroy(GetComponent<SoldierStrafeRight>());
+        Destroy(GetComponent<SoldierShooting>());
     }
 
     public void DisableSelf(State state)
@@ -69,5 +78,13 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
             return;
         }
         this.enabled = true;
+    }
+
+    private void Update()
+    {
+        if (currentState == SubState.IDLE && animator.GetBool("isShooting"))
+        {
+            CurrentState = SubState.SHOOTING;
+        }
     }
 }

@@ -17,7 +17,6 @@ public class SoldierRunFowards : MonoBehaviour, IEnemySubState
         {
             animator.Play("Rifle Run", 0);
         }
-
         //GetComponent<EnemyController>().Move(1, 0);
     }
 

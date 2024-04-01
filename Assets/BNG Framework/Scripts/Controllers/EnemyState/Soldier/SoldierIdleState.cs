@@ -93,17 +93,17 @@ public class SoldierIdleState : MonoBehaviour, IEnemyState
 
         if (restTimer < 300)
         {
-            //CurrentState = SubState.IDLE;
+            CurrentState = SubState.IDLE;
             agent.speed = 0;
             restTimer++;
         }
         else
         {
-            //CurrentState = SubState.RUN_FOWARD;
+            CurrentState = SubState.RUN_FOWARD;
             agent.speed = speed;
         }
 
-        //agent.destination = currentPatrolPoint.position;
+        agent.destination = currentPatrolPoint.position;
     }
 
     public void DisableSelf(State state)

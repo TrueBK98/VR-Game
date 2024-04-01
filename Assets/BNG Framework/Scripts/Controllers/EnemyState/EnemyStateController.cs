@@ -75,7 +75,6 @@ public class EnemyStateController : MonoBehaviour
 
             if (distanceToPlayer <= detectNearbyDistance)
             {
-                //Debug.Log("Entered Combat Mode!");
                 dirNum = AngleDir(transform.forward, playerTarget, transform.up);
                 if (dirNum != 0)
                 {
@@ -122,7 +121,7 @@ public class EnemyStateController : MonoBehaviour
             }
         }
 
-        if (currentState == State.COMBAT)
+        if (currentState == State.COMBAT && name.Contains("Soldier"))
         {
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target, ref r, 0.1f);
             transform.rotation = Quaternion.Euler(0, angle, 0);
@@ -150,6 +149,18 @@ public class EnemyStateController : MonoBehaviour
         else
         {
             return 0f;
+        }
+    }
+
+    public void AlertedOnGettingHurt()
+    {
+        CurrentState = State.COMBAT;
+        if (nearbyAllyEnemies != null && nearbyAllyEnemies.Any())
+        {
+            foreach (EnemyStateController enemy in nearbyAllyEnemies)
+            {
+                enemy.CurrentState = State.COMBAT;
+            }
         }
     }
 }

@@ -2691,11 +2691,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 14
+    VectorObservationSize: 17
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 3
-      BranchSizes: 02000000
+      m_NumContinuousActions: 1
+      BranchSizes: 0200000005000000
     VectorActionSize: 
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
@@ -8064,11 +8064,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 14
+    VectorObservationSize: 17
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 3
-      BranchSizes: 02000000
+      m_NumContinuousActions: 1
+      BranchSizes: 0200000005000000
     VectorActionSize: 
     VectorActionDescriptions: []
     VectorActionSpaceType: 0

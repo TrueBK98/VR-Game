@@ -14,7 +14,7 @@ public class MoveController : MonoBehaviour
 
     public virtual void Move(float vertical, float horizontal)
     {
-        Vector3 movement = new Vector3(-vertical, 0, horizontal);
+        Vector3 movement = new Vector3(horizontal, 0, vertical);
         Vector3 direction = body.rotation * movement;
         body.MovePosition(body.position + direction * speed * Time.deltaTime);
     }

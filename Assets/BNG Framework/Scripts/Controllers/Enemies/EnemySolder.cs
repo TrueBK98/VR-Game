@@ -92,7 +92,7 @@ public class EnemySoldier : EnemyController
             if (d)
             {
                 d.DealDamage(damage, hit.point, hit.normal, true, gameObject, hit.collider.gameObject);
-                agent.AddReward(0.2f);
+                agent.AddReward(0.5f);
             }
             else
             {

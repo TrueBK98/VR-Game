@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -63,47 +64,53 @@ public class SoldierIdleState : MonoBehaviour, IEnemyState
         agent = GetComponent<NavMeshAgent>();
         speed = agent.speed;
         currentPatrolPointIndex = 0;
-        currentPatrolPoint = patrolPoints[currentPatrolPointIndex];
-        agent.destination = currentPatrolPoint.position;
+        if (patrolPoints.Any())
+        {
+            currentPatrolPoint = patrolPoints[currentPatrolPointIndex];
+            agent.destination = currentPatrolPoint.position;
+        }
     }
 
     public int restTimer = 300;
     private void Update()
     {
-        if (!agent.pathPending)
+        if (patrolPoints.Any())
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (!agent.pathPending)
             {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                if (agent.remainingDistance <= agent.stoppingDistance)
                 {
-                    restTimer = 0;
-                    if ((currentPatrolPointIndex + 1) == patrolPoints.Length)
+                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
-                        currentPatrolPointIndex = 0;
-                    }
-                    else
-                    {
-                        currentPatrolPointIndex++;
-                    }
+                        restTimer = 0;
+                        if ((currentPatrolPointIndex + 1) == patrolPoints.Length)
+                        {
+                            currentPatrolPointIndex = 0;
+                        }
+                        else
+                        {
+                            currentPatrolPointIndex++;
+                        }
 
-                    currentPatrolPoint = patrolPoints[currentPatrolPointIndex];
+                        currentPatrolPoint = patrolPoints[currentPatrolPointIndex];
+                    }
                 }
             }
-        }
 
-        if (restTimer < 300)
-        {
-            CurrentState = SubState.IDLE;
-            agent.speed = 0;
-            restTimer++;
-        }
-        else
-        {
-            CurrentState = SubState.RUN_FOWARD;
-            agent.speed = speed;
-        }
+            if (restTimer < 300)
+            {
+                CurrentState = SubState.IDLE;
+                agent.speed = 0;
+                restTimer++;
+            }
+            else
+            {
+                CurrentState = SubState.RUN_FOWARD;
+                agent.speed = speed;
+            }
 
-        agent.destination = currentPatrolPoint.position;
+            agent.destination = currentPatrolPoint.position;
+        }
     }
 
     public void DisableSelf(State state)

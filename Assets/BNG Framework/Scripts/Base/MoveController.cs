@@ -5,9 +5,17 @@ using UnityEngine;
 public class MoveController : MonoBehaviour
 {
     public float speed;
+    Rigidbody body;
+
+    protected void Awake()
+    {
+        body = GetComponent<Rigidbody>();
+    }
 
     public virtual void Move(float vertical, float horizontal)
     {
-        transform.position += ((transform.forward * vertical) + (transform.right * horizontal)) * speed * Time.deltaTime;
+        Vector3 movement = new Vector3(-vertical, 0, horizontal);
+        Vector3 direction = body.rotation * movement;
+        body.MovePosition(body.position + direction * speed * Time.deltaTime);
     }
 }

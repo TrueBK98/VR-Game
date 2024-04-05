@@ -66,7 +66,7 @@ public class EnemyStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == State.IDLE)
+        /*if (currentState == State.IDLE)
         {
             float distanceToPlayer = Vector3.Distance(Player.Instance.transform.position, transform.position);
             Vector3 playerTarget = (Player.Instance.transform.position - transform.position).normalized;
@@ -119,7 +119,7 @@ public class EnemyStateController : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
 
         if (currentState == State.COMBAT && name.Contains("Soldier"))
         {

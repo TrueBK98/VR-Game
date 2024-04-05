@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemySoldier : EnemyController
 {
+    SoldierAgent agent;
+
     [SerializeField] Transform muzzlePointTransform;
     [SerializeField] float MaxRange, damage;
     [SerializeField] GameObject HitFXPrefab;
@@ -28,6 +30,7 @@ public class EnemySoldier : EnemyController
     new void Awake()
     {
         base.Awake();
+        agent = GetComponent<SoldierAgent>();
         layerPlayer = ~LayerMask.NameToLayer("Player");
         shotFired = 0;
     }
@@ -65,8 +68,12 @@ public class EnemySoldier : EnemyController
 
         RaycastHit hit;
         //Debug.DrawRay(muzzlePointTransform.position, muzzlePointTransform.forward, Color.green);
-        if (Physics.Raycast(muzzlePointTransform.position, muzzlePointTransform.forward, out hit, MaxRange, ~LayerMask.GetMask(), QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(muzzlePointTransform.position, muzzlePointTransform.forward, out hit, MaxRange/*, ~LayerMask.GetMask(), QueryTriggerInteraction.Ignore*/))
         {
+            /*if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+            {
+                
+            }*/
             if (HitFXPrefab)
             {
                 GameObject impact = Instantiate(HitFXPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
@@ -85,7 +92,16 @@ public class EnemySoldier : EnemyController
             if (d)
             {
                 d.DealDamage(damage, hit.point, hit.normal, true, gameObject, hit.collider.gameObject);
+                agent.AddReward(0.2f);
             }
+            else
+            {
+                agent.AddReward(-0.1f);
+            }
+        }
+        else
+        {
+            agent.AddReward(-0.1f);
         }
 
         if (shotRoutine != null)

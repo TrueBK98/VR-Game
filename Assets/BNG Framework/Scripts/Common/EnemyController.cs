@@ -45,6 +45,7 @@ public class EnemyController : MoveController
 
 public enum State
 {
+    NONE,
     IDLE,
     COMBAT,
 }

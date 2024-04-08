@@ -39,6 +39,10 @@ public class EnemyStateController : MonoBehaviour
     {
         set
         {
+            if (currentState == value)
+            {
+                return;
+            }
             currentState = value;
             foreach (IEnemyState state in enemyStates)
             {

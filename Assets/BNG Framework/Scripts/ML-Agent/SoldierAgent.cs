@@ -15,7 +15,7 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 public class SoldierAgent : Agent
 {
     [SerializeField]
-    Transform[] spawnPoints;
+    Transform[] Spawnpoints;
 
     EnemySoldier controller;
     EnemyStateController stateController;
@@ -93,22 +93,15 @@ public class SoldierAgent : Agent
             animator.SetBool("isShooting", false);
         }
 
-        if (Vector3.Distance(transform.position, enemyTransform.position) <= 9.679839f)
-        {
-            AddReward(0.05f);
-        }
+        float distanceToEnemy = Vector3.Distance(transform.position, enemyTransform.position);
 
-        RaycastHit hit;
-        if (Physics.Raycast(headTransform.position, headTransform.forward, out hit, 15f))
+        if (distanceToEnemy <= 9.679839f && distanceToEnemy > 6)
         {
-            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
-            {
-                AddReward(0.1f);
-            }
-            else
-            {
-                AddReward(-0.01f);
-            }
+            AddReward(0.02f);
+        }
+        else
+        {
+            AddReward(-0.01f);
         }
 
         if (damageable.Health <= 0)
@@ -119,13 +112,13 @@ public class SoldierAgent : Agent
 
         if (enemyDamageable.Health <= 0)
         {
-            AddReward(5f);
+            AddReward(1f);
             EndEpisode();
         }
     }
     public override void OnEpisodeBegin()
     {
-        transform.position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count())].position;
+        transform.position = Spawnpoints[UnityEngine.Random.Range(0, Spawnpoints.Count())].position;
         damageable.Health = maxHealth;
     }
 
@@ -160,5 +153,13 @@ public class SoldierAgent : Agent
     public void OnGettingHurt()
     {
         AddReward(-0.1f);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            AddReward(-0.1f);
+        }
     }
 }

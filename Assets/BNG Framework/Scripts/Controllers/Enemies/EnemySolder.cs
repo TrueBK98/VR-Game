@@ -64,7 +64,7 @@ public class EnemySoldier : EnemyController
         }
         shotFired++;
 
-        VRUtils.Instance.PlaySpatialClipAt(GunShotSound, muzzlePointTransform.position, GunShotVolume);
+        //VRUtils.Instance.PlaySpatialClipAt(GunShotSound, muzzlePointTransform.position, GunShotVolume);
 
         RaycastHit hit;
         //Debug.DrawRay(muzzlePointTransform.position, muzzlePointTransform.forward, Color.green);
@@ -74,7 +74,8 @@ public class EnemySoldier : EnemyController
             {
                 
             }*/
-            if (HitFXPrefab)
+
+            /*if (HitFXPrefab)
             {
                 GameObject impact = Instantiate(HitFXPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
 
@@ -86,7 +87,7 @@ public class EnemySoldier : EnemyController
                 }
 
                 Destroy(impact, 1f);
-            }
+            }*/
 
             Damageable d = hit.collider.GetComponent<Damageable>();
             if (d)
@@ -98,10 +99,6 @@ public class EnemySoldier : EnemyController
             {
                 agent.AddReward(-0.1f);
             }
-        }
-        else
-        {
-            agent.AddReward(-0.1f);
         }
 
         if (shotRoutine != null)

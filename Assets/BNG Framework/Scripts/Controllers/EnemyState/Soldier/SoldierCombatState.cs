@@ -86,5 +86,10 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
         {
             CurrentState = SubState.SHOOTING;
         }
+
+        if (currentState == SubState.SHOOTING && !animator.GetBool("isShooting"))
+        {
+            CurrentState = SubState.IDLE;
+        }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UIElements.Experimental;
 using static UnityEngine.GraphicsBuffer;
 
@@ -34,6 +35,7 @@ public class EnemyStateController : MonoBehaviour
 
     [SerializeField] Transform headTransform;
     float dirNum;
+    NavMeshAgent agent;
 
     public State CurrentState
     {
@@ -62,8 +64,9 @@ public class EnemyStateController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         enemyStates = GetComponents<IEnemyState>();
-        CurrentState = State.IDLE;
+        CurrentState = State.COMBAT;
         target = transform.eulerAngles.y;
     }
 
@@ -125,7 +128,7 @@ public class EnemyStateController : MonoBehaviour
             }
         }*/
 
-        if (currentState == State.COMBAT && name.Contains("Soldier"))
+        if (currentState == State.COMBAT && name.Contains("Soldier") && !agent.hasPath)
         {
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target, ref r, 0.1f);
             transform.rotation = Quaternion.Euler(0, angle, 0);

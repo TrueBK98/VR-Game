@@ -5,6 +5,8 @@ using UnityEngine;
 public class SoldierRunFowards : MonoBehaviour, IEnemySubState
 {
     Animator animator;
+    EnemySoldier controller;
+
     public void Action(SubState state)
     {
         if (state != SubState.RUN_FOWARD)
@@ -17,12 +19,12 @@ public class SoldierRunFowards : MonoBehaviour, IEnemySubState
         {
             animator.Play("Rifle Run", 0);
         }
-        //GetComponent<EnemyController>().Move(1, 0);
     }
 
     // Start is called before the first frame update
     void Awake()
     {
         animator = GetComponent<Animator>();
+        controller = GetComponent<EnemySoldier>();
     }
 }

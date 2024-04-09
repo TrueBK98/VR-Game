@@ -186,6 +186,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -253,6 +258,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -322,6 +332,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -389,6 +404,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -552,6 +572,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -619,6 +644,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -688,6 +718,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -755,6 +790,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -824,6 +864,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -891,6 +936,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -960,6 +1010,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1027,6 +1082,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1096,6 +1156,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1163,6 +1228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1232,6 +1302,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1299,6 +1374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1368,6 +1448,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1435,6 +1520,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1504,6 +1594,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1571,6 +1666,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1640,6 +1740,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1707,6 +1812,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1776,6 +1886,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1843,6 +1958,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1912,6 +2032,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1979,6 +2104,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2048,6 +2178,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2115,6 +2250,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2276,6 +2416,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2343,6 +2488,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2412,6 +2562,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2479,6 +2634,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2548,6 +2708,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2615,6 +2780,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2684,6 +2854,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainArena (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022438016517191640, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2751,6 +2926,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainArena
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287097909315069575, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748728867899245169, guid: 70a3ca7ae5a95e443bf4a0ab81457820,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -16,7 +16,6 @@ public class EnemyController : MoveController
     {
         base.Awake();
         animator = GetComponent<Animator>();
-        speed = 2.0f;
     }
 
     

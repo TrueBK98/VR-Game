@@ -11,6 +11,7 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
     SubState currentState;
     IEnemySubState[] enemySubStates;
     Animator animator;
+
     public SubState CurrentState
     {
         get { return currentState; }
@@ -24,7 +25,7 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
         }
     }
 
-    private void Awake()
+    protected void Awake()
     {
         animator = GetComponent<Animator>();
     }

@@ -120,7 +120,7 @@ public class SoldierIdleState : MonoBehaviour, IEnemyState
             return;
         }
         this.enabled = false;
-        agent.enabled = false;
+        //agent.enabled = false;
     }
 
     public void EnableSelf(State state)

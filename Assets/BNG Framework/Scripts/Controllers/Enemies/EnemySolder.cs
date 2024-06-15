@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemySoldier : EnemyController
 {
     SoldierAgent agent;
+    AudioSource audioSource;
 
     [SerializeField] Transform muzzlePointTransform;
     [SerializeField] float MaxRange, damage;
@@ -30,6 +31,7 @@ public class EnemySoldier : EnemyController
     new void Awake()
     {
         base.Awake();
+        audioSource = GetComponent<AudioSource>();
         agent = GetComponent<SoldierAgent>();
         layerPlayer = ~LayerMask.NameToLayer("Player");
         shotFired = 0;
@@ -39,9 +41,8 @@ public class EnemySoldier : EnemyController
 
     public void FixedUpdate()
     {
-        if (count > 8)
+        if (count > 15)
         {
-            //GetComponent<Damageable>().DealDamage(1);
             if (animator.GetBool("isShooting")) { Shoot(); }
 
             count = 0;
@@ -64,16 +65,21 @@ public class EnemySoldier : EnemyController
         }
         shotFired++;
 
-        //VRUtils.Instance.PlaySpatialClipAt(GunShotSound, muzzlePointTransform.position, GunShotVolume);
+        audioSource.PlayOneShot(GunShotSound, GunShotVolume);
 
         RaycastHit hit;
         //Debug.DrawRay(muzzlePointTransform.position, muzzlePointTransform.forward, Color.green);
-        if (Physics.Raycast(muzzlePointTransform.position, muzzlePointTransform.forward, out hit, MaxRange/*, ~LayerMask.GetMask(), QueryTriggerInteraction.Ignore*/))
+        if (Physics.Raycast(muzzlePointTransform.position, muzzlePointTransform.forward, out hit, MaxRange))
         {
-            /*if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy"))
             {
-                
-            }*/
+                Damageable d = hit.collider.GetComponent<Damageable>();
+                if (d)
+                {
+                    d.DealDamage(damage, hit.point, hit.normal, true, gameObject, hit.collider.gameObject);
+                    agent.AddReward(0.5f);
+                }
+            }
 
             /*if (HitFXPrefab)
             {
@@ -88,17 +94,6 @@ public class EnemySoldier : EnemyController
 
                 Destroy(impact, 1f);
             }*/
-
-            Damageable d = hit.collider.GetComponent<Damageable>();
-            if (d)
-            {
-                d.DealDamage(damage, hit.point, hit.normal, true, gameObject, hit.collider.gameObject);
-                agent.AddReward(0.5f);
-            }
-            else
-            {
-                agent.AddReward(-0.1f);
-            }
         }
 
         if (shotRoutine != null)

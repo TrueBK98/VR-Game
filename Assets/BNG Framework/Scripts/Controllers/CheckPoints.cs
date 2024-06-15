@@ -1,6 +1,7 @@
 using BNG;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CheckPoints : CheckTriggerController
@@ -21,10 +22,6 @@ public class CheckPoints : CheckTriggerController
         GlobalVar.rifleAmmoAtSpawnpoint = AmmoInven.Instance.rifleAmmo;
         GlobalVar.shotgunAmmoAtSpawnpoint = AmmoInven.Instance.shotgunAmmo;
         GlobalVar.weapons = WeaponInven.Instance.weapons;
-        /*foreach (WeaponType weapon in GlobalVar.weapons)
-        {
-            Debug.Log(weapon);
-        }*/
         foreach (GameObject weapon in WeaponInven.Instance.pooledWeapons)
         {
             switch (weapon.GetComponent<RaycastWeapon>().type)
@@ -49,5 +46,6 @@ public class CheckPoints : CheckTriggerController
         GlobalVar.weaponsPickedUp = RaycastWeapon.weaponsPickedUp;
         GlobalVar.ammoPickedUp = Ammo.ammoPickedUp;
         GlobalVar.enemyTriggerEnabled = EnemyTriggerZone.enemyTriggerEnabled;
+        GlobalVar.healingPickedUp = HealingItems.healingPickedUp;
     }
 }

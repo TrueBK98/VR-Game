@@ -131,6 +131,9 @@ namespace BNG {
             source.pitch = getRandomizedPitch(randomizePitch);
             source.spatialBlend = spatialBlend;
             source.volume = volume;
+            source.rolloffMode = AudioRolloffMode.Linear;
+            source.minDistance = 1;
+            source.maxDistance = 20;
             source.Play();
 
             Destroy(go, clip.length);

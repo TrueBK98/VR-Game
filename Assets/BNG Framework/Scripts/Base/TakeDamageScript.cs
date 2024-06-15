@@ -32,10 +32,10 @@ public class TakeDamageScript : MonoBehaviour
 
     private IEnumerator TakeDamageEffect()
     {
-        intensity = 0.4f;
+        intensity = 0.6f;
 
         vignette.enabled.Override(true);
-        vignette.intensity.Override(0.4f);
+        vignette.intensity.Override(0.6f);
 
         yield return new WaitForSeconds(0.4f);
 

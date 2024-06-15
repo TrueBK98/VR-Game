@@ -22,6 +22,10 @@ namespace BNG {
         [Header("Shown for Debug : ")]
         public bool ShowExplosionRadius = false;
 
+        [SerializeField] GameObject explosionFX;
+        [SerializeField] AudioClip explodingSound;
+        public float explodingVolume = 0.75f;
+
         public virtual void DoExplosion() {
             StartCoroutine(explosionRoutine());
         }
@@ -30,6 +34,9 @@ namespace BNG {
 
             // Get all objects in explosion radius
             Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius);
+
+            Instantiate(explosionFX, transform.position, transform.rotation);
+            VRUtils.Instance.PlaySpatialClipAt(explodingSound, transform.position, explodingVolume);
 
             // First Damage all of the items
             for (int x = 0; x < colliders.Length; x++) {

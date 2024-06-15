@@ -32,15 +32,15 @@ public class DoorController : MonoBehaviour
     {
         if (name.Contains("1"))
         {
-            DoorAnim.Play("door_1_opend");
+            DoorAnim.Play("door_1_opened");
         }
         else if (name.Contains("2"))
         {
-            DoorAnim.Play("door_2_opend");
+            DoorAnim.Play("door_2_opened");
         }
         else if (name.Contains("3"))
         {
-            DoorAnim.Play("door_3_opend");
+            DoorAnim.Play("door_3_opened");
         }
     }
 }

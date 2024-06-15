@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class ZombieIdleState : MonoBehaviour, IEnemyState
 {
+    NavMeshAgent agent;
     [SerializeField]
     SubState currentState;
     IEnemySubState[] enemySubStates;
@@ -21,6 +22,11 @@ public class ZombieIdleState : MonoBehaviour, IEnemyState
         }
     }
 
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
     public void AddSubStates(State state)
     {
         if (state != State.IDLE)
@@ -29,6 +35,7 @@ public class ZombieIdleState : MonoBehaviour, IEnemyState
         }
 
         gameObject.AddComponent<ZombieIdle>();
+        gameObject.AddComponent<ZombieDie>();
 
         enemySubStates = GetComponents<IEnemySubState>();
         CurrentState = SubState.IDLE;
@@ -61,5 +68,13 @@ public class ZombieIdleState : MonoBehaviour, IEnemyState
         }
 
         Destroy(GetComponent<ZombieIdle>());
+        Destroy(GetComponent<ZombieDie>());
+    }
+
+    public void onDie()
+    {
+        CurrentState = SubState.DIE;
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<ZombieSoundController>().enabled = false;
     }
 }

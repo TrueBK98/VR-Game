@@ -8,12 +8,13 @@ public class EnemyZombie : EnemyController
     [SerializeField] float MaxRange, damage;
     int layerPlayer;
     EnemySoundController soundController;
+    [SerializeField] Transform hitTransform;
 
     // Start is called before the first frame update
     new void Awake()
     {
         base.Awake();
-        layerPlayer = ~LayerMask.NameToLayer("Player");
+        layerPlayer = LayerMask.NameToLayer("Player");
         soundController = GetComponent<EnemySoundController>();
     }
 
@@ -21,9 +22,9 @@ public class EnemyZombie : EnemyController
     {
         RaycastHit hit;
         
-        if (Physics.Raycast(transform.position, transform.forward, out hit, MaxRange, ~LayerMask.GetMask(), QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(hitTransform.position, Player.Instance.transform.position - hitTransform.position, out hit, MaxRange, ~layerPlayer, QueryTriggerInteraction.Ignore))
         {
-            Damageable d = hit.collider.GetComponent<Damageable>();
+            HPController d = hit.collider.GetComponent<HPController>();
             if (d)
             {
                 soundController.PlayMeleeHits();
@@ -34,7 +35,7 @@ public class EnemyZombie : EnemyController
 
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, transform.forward, Color.green);
+        Debug.DrawRay(hitTransform.position, hitTransform.forward, Color.green);
     }
 
     public override void GetHurt()

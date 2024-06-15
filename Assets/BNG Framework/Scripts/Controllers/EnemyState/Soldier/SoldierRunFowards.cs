@@ -5,7 +5,6 @@ using UnityEngine;
 public class SoldierRunFowards : MonoBehaviour, IEnemySubState
 {
     Animator animator;
-    EnemySoldier controller;
 
     public void Action(SubState state)
     {
@@ -25,6 +24,5 @@ public class SoldierRunFowards : MonoBehaviour, IEnemySubState
     void Awake()
     {
         animator = GetComponent<Animator>();
-        controller = GetComponent<EnemySoldier>();
     }
 }

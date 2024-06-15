@@ -17,6 +17,7 @@ public class HPController : Damageable, IDataPersistence
             _startingHealth = value;
             Health = _startingHealth;
         }
+        get { return _startingHealth; }
     }
 
     public float CurrentHP
@@ -89,6 +90,11 @@ public class HPController : Damageable, IDataPersistence
         {
             GlobalVar.weapons = new WeaponType[3];
         }
+        damageableDestroyed = GlobalVar.damageableDestroyed;
+        RaycastWeapon.weaponsPickedUp = GlobalVar.weaponsPickedUp;
+        Ammo.ammoPickedUp = GlobalVar.ammoPickedUp;
+        EnemyTriggerZone.enemyTriggerEnabled = GlobalVar.enemyTriggerEnabled;
+        HealingItems.healingPickedUp = GlobalVar.healingPickedUp;
         SceneManager.LoadScene(1);
     }
 }

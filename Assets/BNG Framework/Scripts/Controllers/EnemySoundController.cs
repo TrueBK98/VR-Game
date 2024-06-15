@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySoundController : MonoBehaviour
 {
-    AudioSource footstepSource, meleeSource;
+    protected AudioSource audioSource;
 
     [Header("Footsteps")]
     public List<AudioClip> footsteps;
@@ -12,8 +12,7 @@ public class EnemySoundController : MonoBehaviour
     // Start is called before the first frame update
     protected void Awake()
     {
-        footstepSource = GetComponents<AudioSource>()[0];
-        meleeSource = GetComponents<AudioSource>()[1];
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void PlayFootsteps()
@@ -21,11 +20,7 @@ public class EnemySoundController : MonoBehaviour
         AudioClip clip;
 
         clip = footsteps[Random.Range(0, footsteps.Count - 1)];
-
-        footstepSource.clip = clip;
-        footstepSource.volume = Random.Range(0.4f, 0.6f);
-        footstepSource.pitch = Random.Range(0.8f, 1.2f);
-        footstepSource.Play();
+        audioSource.PlayOneShot(clip, 1f);
     }
 
     public void PlayMeleeHits()
@@ -33,9 +28,6 @@ public class EnemySoundController : MonoBehaviour
         AudioClip clip;
         clip = meleeHits[Random.Range(0, meleeHits.Count - 1)];
 
-        meleeSource.clip = clip;
-        meleeSource.volume = Random.Range(0.4f, 0.6f);
-        meleeSource.pitch = Random.Range(0.8f, 1.2f);
-        meleeSource.Play();
+        audioSource.PlayOneShot(clip, 1f);
     }
 }

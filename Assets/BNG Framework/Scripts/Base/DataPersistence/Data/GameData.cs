@@ -23,6 +23,7 @@ public class GameData : Singleton<GameData>
     public SerializableDictionary<string, bool> weaponsPickedUp;
     public SerializableDictionary<string, bool> ammoPickedUp;
     public SerializableDictionary<string, bool> enemyTriggerEnabled;
+    public SerializableDictionary<string, bool> healingPickedUp;
     public GameData() 
     {
         this.currentLevel = 0;
@@ -42,5 +43,6 @@ public class GameData : Singleton<GameData>
         weaponsPickedUp = new SerializableDictionary<string, bool>();
         ammoPickedUp = new SerializableDictionary<string, bool>();
         enemyTriggerEnabled = new SerializableDictionary<string, bool>();
+        healingPickedUp = new SerializableDictionary<string, bool>();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoldierStrafeRight : MonoBehaviour, IEnemySubState
 {
     Animator animator;
+
     public void Action(SubState state)
     {
         if (state != SubState.STRAFE_RIGHT)

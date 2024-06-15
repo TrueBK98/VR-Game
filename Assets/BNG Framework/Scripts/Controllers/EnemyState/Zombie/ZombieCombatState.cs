@@ -43,6 +43,7 @@ public class ZombieCombatState : MonoBehaviour, IEnemyState
 
         gameObject.AddComponent<ZombieChase>();
         gameObject.AddComponent<ZombieAttack>();
+        gameObject.AddComponent<ZombieDie>();
 
         enemySubStates = GetComponents<IEnemySubState>();
         CurrentState = SubState.CHASE;
@@ -55,7 +56,12 @@ public class ZombieCombatState : MonoBehaviour, IEnemyState
             return;
         }
         this.enabled = false;
-        agent.enabled = false;
+        if (agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            
+        }
+        //agent.enabled = false;
     }
 
     public void EnableSelf(State state)
@@ -66,7 +72,7 @@ public class ZombieCombatState : MonoBehaviour, IEnemyState
         }
 
         this.enabled = true;
-        agent.enabled = true;
+        //agent.enabled = true;
         agent.destination = Player.Instance.transform.position;
     }
 
@@ -79,6 +85,7 @@ public class ZombieCombatState : MonoBehaviour, IEnemyState
 
         Destroy(GetComponent<ZombieChase>());
         Destroy(GetComponent<ZombieAttack>());
+        Destroy(GetComponent<ZombieDie>());
     }
 
     private void Update()
@@ -104,5 +111,13 @@ public class ZombieCombatState : MonoBehaviour, IEnemyState
         }
 
         agent.destination = Player.Instance.transform.position;
+    }
+
+    public void onDie()
+    {
+        CurrentState = SubState.DIE;
+        enabled = false;
+        agent.enabled = false;
+        GetComponent<ZombieSoundController>().enabled = false;
     }
 }

@@ -72,6 +72,14 @@ public class MapController : MonoBehaviour, IDataPersistence
                         triggerZone.LoadLastCheckpoint();
                     }
                 }
+
+                if (GlobalVar.healingPickedUp.Any())
+                {
+                    foreach (HealingItems item in FindObjectsOfType<HealingItems>())
+                    {
+                        item.LoadLastCheckpoint();
+                    }
+                }
             }
         }
 

@@ -12555,7 +12555,7 @@ MonoBehaviour:
   ForceStraightArrow: 0
   MaxSlope: 70
   TeleportYOffset: 0
-  FadeScreenOnTeleport: 1
+  FadeScreenOnTeleport: 0
   TeleportFadeSpeed: 10
   TeleportDelay: 0.2
   FrictionMaterial: {fileID: 0}
@@ -15861,14 +15861,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133129013955741149}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.046, y: -0.0195, z: -0.193}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.046, y: -0.0195, z: -0.221}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5551422641122006176}
   m_Father: {fileID: 7703987777913685803}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!135 &4844992326388526286
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15888,7 +15888,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.07
+  m_Radius: 0.06
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7865717458917996486
 MonoBehaviour:
@@ -15912,7 +15912,15 @@ MonoBehaviour:
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
   LastSnapTime: 0
-  OnlyAllowNames: []
+  OnlyAllowNames:
+  - Bandage
+  - Bandage_Pack
+  - Bottles_01
+  - Bottles_05
+  - Bottles_08
+  - Bottles_04
+  - Pill_Tablet
+  - Syringe
   ExcludeTransformNames: []
   SoundOnSnap: {fileID: 0}
   SoundOnUnsnap: {fileID: 0}
@@ -40452,7 +40460,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5233323497416589192}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60e921fb01765594ea413047ebcfc65c, type: 3}
   m_Name: 
@@ -40488,12 +40496,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5233323497416589192}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da521d716fff7fe48956b689e37e751b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionEnabled: 0
+  CollisionEnabled: 1
   OnlyCollideAgainstWorld: 0
   worldTag: World
   cameraRig: {fileID: 5004161137763506148}
@@ -47063,12 +47071,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6082828399027304874}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac09bf699d4234448aa42c086c9f964c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeOnSceneLoaded: 1
+  FadeOnSceneLoaded: 0
   FadeColor: {r: 0, g: 0, b: 0, a: 0.9882353}
   FadeInSpeed: 2
   FadeOutSpeed: 1
@@ -63219,14 +63227,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8218182526247039429}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.045, y: -0.0195, z: -0.193}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.045, y: -0.0195, z: -0.221}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6756573046400991421}
   m_Father: {fileID: 4859487211208382996}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!135 &9032873474202544166
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -63246,7 +63254,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.07
+  m_Radius: 0.06
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8597384255097068956
 MonoBehaviour:
@@ -63270,7 +63278,15 @@ MonoBehaviour:
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
   LastSnapTime: 0
-  OnlyAllowNames: []
+  OnlyAllowNames:
+  - Bandage
+  - Bandage_Pack
+  - Bottles_01
+  - Bottles_05
+  - Bottles_08
+  - Bottles_04
+  - Pill_Tablet
+  - Syringe
   ExcludeTransformNames: []
   SoundOnSnap: {fileID: 0}
   SoundOnUnsnap: {fileID: 0}

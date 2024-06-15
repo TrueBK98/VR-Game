@@ -43,6 +43,7 @@ public class SoldierIdleState : MonoBehaviour, IEnemyState
 
         gameObject.AddComponent<SoldierIdle>();
         gameObject.AddComponent<SoldierRunFowards>();
+        gameObject.AddComponent<SoldierDie>();
 
         enemySubStates = GetComponents<IEnemySubState>();
         CurrentState = SubState.IDLE;
@@ -57,6 +58,7 @@ public class SoldierIdleState : MonoBehaviour, IEnemyState
 
         Destroy(GetComponent<SoldierIdle>());
         Destroy(GetComponent<SoldierRunFowards>());
+        Destroy(GetComponent<SoldierDie>());
     }
 
     private void Awake()
@@ -120,7 +122,7 @@ public class SoldierIdleState : MonoBehaviour, IEnemyState
             return;
         }
         this.enabled = false;
-        //agent.enabled = false;
+        agent.enabled = false;
     }
 
     public void EnableSelf(State state)
@@ -131,5 +133,11 @@ public class SoldierIdleState : MonoBehaviour, IEnemyState
         }
 
         this.enabled = true;
+    }
+
+    public void onDie()
+    {
+        CurrentState = SubState.DIE;
+        agent.enabled = false;
     }
 }

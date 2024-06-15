@@ -33,37 +33,6 @@ public class WeaponInventory : MonoBehaviour, IDataPersistence
             if (currentWeapon == value) { return;}
             currentWeapon = value;
             StartCoroutine(couroutine());
-            /*if (activeWeapon != null)
-            {
-                activeWeapon.GetComponent<Grabbable>().DropItem(grabber);
-                GameObject.Destroy(activeWeapon);
-            }
-
-            currentWeapon = value;
-
-            switch (currentWeapon)
-            {
-                case WeaponType.BareHand:
-                    break;
-                case WeaponType.Pistol:
-                    activeWeapon = Instantiate(pistol, grabber.transform.position, grabber.transform.rotation);
-                    grabber.GrabGrabbable(activeWeapon.GetComponent<Grabbable>());
-                    break;
-                case WeaponType.Shotgun:
-                    activeWeapon = Instantiate(shotgun, grabber.transform.position, grabber.transform.rotation);
-                    grabber.GrabGrabbable(activeWeapon.GetComponent<Grabbable>());
-                    break;
-                case WeaponType.Knife:
-                    activeWeapon = Instantiate(knife, grabber.transform.position, grabber.transform.rotation);
-                    grabber.GrabGrabbable(activeWeapon.GetComponent<Grabbable>());
-                    break;
-                case WeaponType.Rifle:
-                    activeWeapon = Instantiate(rifle, grabber.transform.position, grabber.transform.rotation);
-                    grabber.GrabGrabbable(activeWeapon.GetComponent<Grabbable>());
-                    break;
-                default:
-                    break;
-            }*/
         }
     }
 

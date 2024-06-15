@@ -66,14 +66,15 @@ public class EnemyStateController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         enemyStates = GetComponents<IEnemyState>();
-        CurrentState = State.COMBAT;
+        //CurrentState = State.COMBAT;
+        CurrentState = State.IDLE;
         target = transform.eulerAngles.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (currentState == State.IDLE)
+        if (currentState == State.IDLE)
         {
             float distanceToPlayer = Vector3.Distance(Player.Instance.transform.position, transform.position);
             Vector3 playerTarget = (Player.Instance.transform.position - transform.position).normalized;
@@ -109,7 +110,7 @@ public class EnemyStateController : MonoBehaviour
                         dirNum = AngleDir(transform.forward, playerTarget, transform.up);
                         if (dirNum != 0)
                         {
-                           ChangeAngle(transform.eulerAngles.y + angleToPlayer * dirNum); 
+                            ChangeAngle(transform.eulerAngles.y + angleToPlayer * dirNum);
                         }
                         else
                         {
@@ -126,7 +127,7 @@ public class EnemyStateController : MonoBehaviour
                     }
                 }
             }
-        }*/
+        }
 
         if (currentState == State.COMBAT && name.Contains("Soldier") && !agent.hasPath)
         {

@@ -21,4 +21,5 @@ public class GlobalVar
     public static SerializableDictionary<string, bool> weaponsPickedUp;
     public static SerializableDictionary<string, bool> ammoPickedUp;
     public static SerializableDictionary<string, bool> enemyTriggerEnabled;
+    public static SerializableDictionary<string, bool> healingPickedUp;
 }

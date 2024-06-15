@@ -46,7 +46,14 @@ public class AmmoInventory : MonoBehaviour, IDataPersistence
         if (heldAmmo)
         {
             collision.gameObject.GetComponent<Ammo>().IsPickedUP = true;
-            collision.transform.GetComponent<Grabbable>().DropItem(collision.transform.GetComponent<Grabbable>().HeldByGrabbers[0]);
+            try
+            {
+                collision.transform.GetComponent<Grabbable>().DropItem(collision.transform.GetComponent<Grabbable>().HeldByGrabbers[0]);
+            }
+            catch (System.Exception)
+            {
+            }
+            
             GameObject.Destroy(collision.gameObject);
         }
     }

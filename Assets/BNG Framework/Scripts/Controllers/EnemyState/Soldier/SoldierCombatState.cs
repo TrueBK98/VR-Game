@@ -10,7 +10,8 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
     [SerializeField]
     SubState currentState;
     IEnemySubState[] enemySubStates;
-    Animator animator;
+    protected Animator animator;
+    SoldierAgent agent;
 
     public SubState CurrentState
     {
@@ -28,6 +29,7 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
     protected void Awake()
     {
         animator = GetComponent<Animator>();
+        agent = GetComponent<SoldierAgent>();
     }
 
     public void AddSubStates(State state)
@@ -43,6 +45,7 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
         gameObject.AddComponent<SoldierStrafeLeft>();
         gameObject.AddComponent<SoldierStrafeRight>();
         gameObject.AddComponent<SoldierShooting>();
+        gameObject.AddComponent<SoldierDie>();
 
         enemySubStates = GetComponents<IEnemySubState>();
         CurrentState = SubState.IDLE;
@@ -61,6 +64,7 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
         Destroy(GetComponent<SoldierStrafeLeft>());
         Destroy(GetComponent<SoldierStrafeRight>());
         Destroy(GetComponent<SoldierShooting>());
+        Destroy(GetComponent<SoldierDie>());
     }
 
     public void DisableSelf(State state)
@@ -79,11 +83,12 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
             return;
         }
         this.enabled = true;
+        agent.enabled = true;
     }
 
-    private void Update()
+    protected void Update()
     {
-        if (currentState == SubState.IDLE && animator.GetBool("isShooting"))
+        if (currentState == SubState.IDLE && animator.GetBool("isShooting") && !animator.GetCurrentAnimatorStateInfo(1).IsName("Reloading"))
         {
             CurrentState = SubState.SHOOTING;
         }
@@ -92,5 +97,17 @@ public class SoldierCombatState : MonoBehaviour, IEnemyState
         {
             CurrentState = SubState.IDLE;
         }
+
+        if (currentState == SubState.SHOOTING && animator.GetCurrentAnimatorStateInfo(1).IsName("Reloading"))
+        {
+            CurrentState = SubState.IDLE;
+        }
+    }
+
+    public void onDie()
+    {
+        CurrentState = SubState.DIE;
+        agent.enabled = false;
+        animator.SetBool("isShooting", false);
     }
 }

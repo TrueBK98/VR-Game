@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -41,6 +40,7 @@ public class MenuButtonController : MonoBehaviour
         GlobalVar.weaponsPickedUp = new SerializableDictionary<string, bool>();
         GlobalVar.ammoPickedUp = new SerializableDictionary<string, bool>();
         GlobalVar.enemyTriggerEnabled = new SerializableDictionary<string, bool>();
+        GlobalVar.healingPickedUp = new SerializableDictionary<string, bool>();
         DataPersistenceManager.Instance.NewGame();
         SceneManager.LoadScene(1);
     }

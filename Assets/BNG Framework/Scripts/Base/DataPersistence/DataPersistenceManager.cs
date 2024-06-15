@@ -59,6 +59,7 @@ public class DataPersistenceManager : MonoBehaviour
             GameData.Instance.weaponsPickedUp = gameData.weaponsPickedUp;
             GameData.Instance.ammoPickedUp = gameData.ammoPickedUp;
             GameData.Instance.enemyTriggerEnabled = gameData.enemyTriggerEnabled;
+            GameData.Instance.healingPickedUp = gameData.healingPickedUp;
         }
 
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)

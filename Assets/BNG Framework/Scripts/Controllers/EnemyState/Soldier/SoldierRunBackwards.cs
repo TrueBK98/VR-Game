@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoldierRunBackwards : MonoBehaviour, IEnemySubState
 {
     Animator animator;
+
     public void Action(SubState state)
     {
         if (state != SubState.RUN_BACKWARD)

@@ -333,7 +333,7 @@ namespace BNG {
                 smoothLocomotion.UpdateInputs();
 
                 if(smoothLocomotion.ControllerType == PlayerControllerType.CharacterController) {
-                    smoothLocomotion.MoveCharacter();
+                    smoothLocomotion.MoveCharazcter();
                 }
                 else if (smoothLocomotion.ControllerType == PlayerControllerType.Rigidbody) {
                     smoothLocomotion.MoveRigidCharacter();

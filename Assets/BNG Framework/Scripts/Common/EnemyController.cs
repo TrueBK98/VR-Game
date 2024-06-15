@@ -1,10 +1,8 @@
 using BNG;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.FilePathAttribute;
 
 
 
@@ -58,5 +56,6 @@ public enum SubState
     STRAFE_RIGHT,
     SHOOTING,
     CHASE,
-    ATTACK
+    ATTACK,
+    DIE
 }
